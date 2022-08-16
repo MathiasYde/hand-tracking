@@ -3,21 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using Valve.VR;
 
-public class HandTracking : MonoBehaviour {
-    [SerializeField] private Valve.VR.InteractionSystem.Hand leftHand;
-    [SerializeField] private Valve.VR.InteractionSystem.Hand rightHand;
-    [SerializeField] private JointOrder jointOrder;
-    private void Start() {
-        leftHand.ShowSkeleton(true);
-        rightHand.ShowSkeleton(true);
+public static class HandTracking {
+    private static Dictionary<SteamVR_Input_Sources, HandPoseData> handData = new Dictionary<SteamVR_Input_Sources, HandPoseData>();
+
+    public static IEnumerator Record() {
+        throw new 
     }
 
-    private void Update() {
-        Debug.Log($"r.thumb:{rightHand.skeleton.thumbCurl}");
-        Debug.Log($"r.index:{rightHand.skeleton.indexCurl}");
-        Debug.Log($"r.middle:{rightHand.skeleton.middleCurl}");
-        Debug.Log($"r.ring:{rightHand.skeleton.ringCurl}");
-        Debug.Log($"r.pinky:{rightHand.skeleton.pinkyCurl}");
+    public static void UpdateHand(SteamVR_Input_Sources hand, HandPoseData pose) {
+        handData[hand] = pose;
     }
 
+    public static HandPoseData getHandData(SteamVR_Input_Sources hand) {
+        return handData[hand];
+    }
 }
