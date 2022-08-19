@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using Valve.VR;
 
+[CreateAssetMenu(fileName = "Stop Criterias/StillMotionRecordingStoppingCriteria")]
 public class StillMotionRecordingStoppingCriteria : RecordingStoppingCriteria {
     [SerializeField] private float maxFrames = 8; // frames
-    [SerializeField] private float maxNoise;
+    [SerializeField] private float maxNoise; 
 
     [SerializeField] private int handDataBufferSize = 16;
     [SerializeField] private List<float> noiseBuffer;
@@ -32,7 +33,7 @@ public class StillMotionRecordingStoppingCriteria : RecordingStoppingCriteria {
         return totalNoise < maxNoise;
     }
 
-    public override void Update(Dictionary<SteamVR_Input_Sources, HandPoseData> handPoses) {
+    public override void UpdateHands(Dictionary<SteamVR_Input_Sources, HandPoseData> handPoses) {
         float totalNoise = 0f;
         foreach (KeyValuePair<SteamVR_Input_Sources, HandPoseData> pair in handPoses) {
             SteamVR_Input_Sources source = pair.Key;

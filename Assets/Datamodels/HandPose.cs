@@ -5,5 +5,6 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName ="HandPose")]
 public class HandPose : ScriptableObject {
+	
 
 }
