@@ -4,12 +4,18 @@ using UnityEngine;
 
 public class RequestRecording : MonoBehaviour {
     [SerializeField] private RecordingStoppingCriteria stopCriteria;
+    [SerializeField] private RecordingMethod recordingMethod;
+    [SerializeField] private HandTrackRecording recording;
 
     private IEnumerator RequestRecord() {
-        yield return HandTracking.Record(stopCriteria);
+        Debug.Log("Starting recording");
+        yield return HandTracking.Record(recording);
+        Debug.Log("Stopped recording");
     }
     private void Update() {
         if (Input.GetKeyDown(KeyCode.Space)) {
+            HandTracking.stopCriteria = stopCriteria;
+            HandTracking.recordingMethod = recordingMethod;
             StartCoroutine(RequestRecord());
         }
     }

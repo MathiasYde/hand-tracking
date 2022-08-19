@@ -11,7 +11,7 @@ public class StillMotionRecordingStoppingCriteria : RecordingStoppingCriteria {
     [SerializeField] private int handDataBufferSize = 16;
     [SerializeField] private List<float> noiseBuffer;
     [SerializeField] private Dictionary<SteamVR_Input_Sources, HandPoseData> previousHandData;
-    private float CalculateHandPoseDistance(HandPoseData hand1, HandPoseData hand2) {
+    private float CalculateNoise(HandPoseData hand1, HandPoseData hand2) {
         float noise = 0f;
         noise += hand1.thumbCurl - hand2.thumbCurl;
         noise += hand1.indexCurl - hand2.indexCurl;
@@ -33,20 +33,20 @@ public class StillMotionRecordingStoppingCriteria : RecordingStoppingCriteria {
         return totalNoise < maxNoise;
     }
 
-    public override void UpdateHands(Dictionary<SteamVR_Input_Sources, HandPoseData> handPoses) {
+    public override void UpdateRecording(Dictionary<SteamVR_Input_Sources, HandPoseData> handPoses) {
         float totalNoise = 0f;
         foreach (KeyValuePair<SteamVR_Input_Sources, HandPoseData> pair in handPoses) {
             SteamVR_Input_Sources source = pair.Key;
             HandPoseData currentData = pair.Value;
             HandPoseData previousData = previousHandData[source];
 
-            float noise = CalculateHandPoseDistance(currentData, previousData);
+            float noise = CalculateNoise(currentData, previousData);
             totalNoise += noise;
         }
 
         noiseBuffer.Add(totalNoise);
         // remove old data when count is bigger than buffer size
-        if (noiseBuffer.Count > 16) {
+        if (noiseBuffer.Count > handDataBufferSize) {
             noiseBuffer.RemoveAt(0);
         }
 
@@ -59,8 +59,12 @@ public class StillMotionRecordingStoppingCriteria : RecordingStoppingCriteria {
         }
     }
 
-    public override void Start() {
+    public override void StartRecording() {
         noiseBuffer = new List<float>();
         previousHandData = new Dictionary<SteamVR_Input_Sources, HandPoseData>();
+    }
+
+    public override void StopRecording() {
+     
     }
 }

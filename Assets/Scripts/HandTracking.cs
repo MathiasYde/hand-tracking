@@ -6,24 +6,40 @@ using Valve.VR;
 public static class HandTracking {
     private static Dictionary<SteamVR_Input_Sources, HandPoseData> handData = new Dictionary<SteamVR_Input_Sources, HandPoseData>();
 
-    private static bool isRecording = false;
-    private static RecordingStoppingCriteria stopCriteria;
+    public static RecordingStoppingCriteria stopCriteria;
+    public static RecordingMethod recordingMethod;
+    private static HandTrackRecording recording;
 
-    public static IEnumerator Record(RecordingStoppingCriteria stopCriteria)  {
-        if (isRecording) {
+    public static IEnumerator Record(HandTrackRecording recording)  {
+        if (recording != null) {
             Debug.LogError("Tried to start recording while already recording");
             yield return null;
         }
-        HandTracking.stopCriteria = stopCriteria;
+
+        HandTracking.recording = recording;
         
-        stopCriteria.Start();
+        stopCriteria.StartRecording();
+        recordingMethod.StartRecording();
         while (!stopCriteria.ShouldStop()) {
-            yield return new WaitForSeconds(1);    
+            recordingMethod.UpdateRecording();  
+        }
+        stopCriteria.StopRecording();
+        recordingMethod.StopRecording();
+        
+    }
+
+    public static void CaptureHandData() {
+        Debug.Assert(recording != null, "Tried to capture hand data, but it's not recording");
+        foreach (KeyValuePair<SteamVR_Input_Sources, HandPoseData> pair in handData) {
+            SteamVR_Input_Sources source = pair.Key;
+            HandPoseData handData = pair.Value;
+
+            recording.handData[source].Add(handData);
         }
     }
 
     public static void Update() {
-        stopCriteria.UpdateHands(handData);
+        stopCriteria.UpdateRecording(handData);
     }
 
     public static void UpdateHand(SteamVR_Input_Sources hand, HandPoseData pose) {

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -188,6 +188,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stopCriteria: {fileID: 11400000, guid: 8dc6b3ac875f96c4ba4c22b258f9b79d, type: 2}
+  recordingMethod: {fileID: 11400000, guid: 7af68407022ea9e428919dd8405a46ca, type: 2}
+  recording: {fileID: 11400000, guid: 3014fe24e2957464b99def9e3e5d4522, type: 2}
 --- !u!4 &827473686
 Transform:
   m_ObjectHideFlags: 0
