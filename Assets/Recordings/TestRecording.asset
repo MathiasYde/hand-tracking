@@ -12,4 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e9d0a5a7d42025469fa9efc97acf756, type: 3}
   m_Name: TestRecording
   m_EditorClassIdentifier: 
+  handData:
+    list:
+    - Key: 0
+    keyCollision: 0
   accuracy: 0.4

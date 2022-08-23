@@ -4,7 +4,7 @@ using UnityEngine;
 using Valve.VR;
 
 public static class HandTracking {
-    private static Dictionary<SteamVR_Input_Sources, HandPoseData> handData = new Dictionary<SteamVR_Input_Sources, HandPoseData>();
+    private static GenericDictionary<SteamVR_Input_Sources, HandPoseData> handData = new GenericDictionary<SteamVR_Input_Sources, HandPoseData>();
 
     public static RecordingStoppingCriteria stopCriteria;
     public static RecordingMethod recordingMethod;
@@ -25,7 +25,8 @@ public static class HandTracking {
         }
         stopCriteria.StopRecording();
         recordingMethod.StopRecording();
-        
+
+        yield return null;
     }
 
     public static void CaptureHandData() {

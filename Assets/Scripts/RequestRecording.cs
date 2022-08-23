@@ -9,7 +9,7 @@ public class RequestRecording : MonoBehaviour {
 
     private IEnumerator RequestRecord() {
         Debug.Log("Starting recording");
-        yield return HandTracking.Record(recording);
+        yield return HandTracking.Record(recording); // maybe this needs to be wrapped in StartCoroutine
         Debug.Log("Stopped recording");
     }
     private void Update() {
