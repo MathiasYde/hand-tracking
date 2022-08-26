@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,7 @@ public static class HandTracking {
     public static RecordingStoppingCriteria stopCriteria;
     public static RecordingMethod recordingMethod;
     private static HandTrackRecording recording;
+    [SerializeField] private static List<Tuple<HandTrackRecording, int>> recognizeRecordings;
 
     public static IEnumerator Record(HandTrackRecording recording)  {
         if (HandTracking.recording != null) {
@@ -21,14 +23,46 @@ public static class HandTracking {
         stopCriteria.StartRecording();
         recordingMethod.StartRecording();
         while (!stopCriteria.ShouldStop()) {
-            stopCriteria.UpdateRecording(handData);
-            recordingMethod.UpdateRecording();
             yield return null;
         }
         stopCriteria.StopRecording();
         recordingMethod.StopRecording();
 
         HandTracking.recording = null;
+    }
+    public static void AddRecordingToRecognize(HandTrackRecording recording) {
+        recognizeRecordings.Add(new Tuple<HandTrackRecording, int>(recording, 0));
+    }
+    public static void ResetHandGestureRecognitionProgress() {
+        foreach (Tuple<HandTrackRecording, int> pair1 in recognizeRecordings) {
+            HandTrackRecording recording = pair1.Item1;
+            int progress = pair1.Item2;
+            progress = 0;
+        }
+    }
+
+    public static void RecognizeHandGestures(GenericDictionary<SteamVR_Input_Sources, HandPoseData> handData) {
+        foreach (Tuple<HandTrackRecording, int> pair1 in recognizeRecordings) {
+            HandTrackRecording recording = pair1.Item1;
+            int progress = pair1.Item2;
+
+
+            float totalDistance = 0.0f;
+            foreach (KeyValuePair<SteamVR_Input_Sources, HandPoseData> pair2 in handData) {
+                SteamVR_Input_Sources source = pair2.Key;
+                HandPoseData data = pair2.Value;
+
+                float distance = HandPoseData.Distance(recording.handData[source][progress], data);
+                totalDistance += distance;
+            }
+
+            progress += (totalDistance <= recording.maxDistance) ? 1 : 0;
+            if (progress >= recording.count) {
+                recording.onRecognize?.Invoke();
+                // reset all other progress
+                foreach
+            }
+        }
     }
 
     public static void CaptureHandData() {
@@ -44,11 +78,13 @@ public static class HandTracking {
             }
 
             recording.handData[source].Add(handData);
+            recording.count += 1;
         }
     }
 
     public static void Update() {
-        stopCriteria.UpdateRecording(handData);
+        stopCriteria?.UpdateRecording(handData);
+        recordingMethod?.UpdateRecording();
     }
 
     public static void UpdateHand(SteamVR_Input_Sources hand, HandPoseData pose) {
