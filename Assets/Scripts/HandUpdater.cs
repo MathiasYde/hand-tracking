@@ -15,7 +15,7 @@ public class HandUpdater : MonoBehaviour {
         if (!rightHand) { Debug.LogError("Right hand not initialized", this); }
     }
 
-    private void PopulateHandPoseData(Hand hand, HandPoseData handData) {
+    private HandPoseData PopulateHandPoseData(Hand hand, HandPoseData handData) {
         handData.thumbCurl = hand.skeleton.thumbCurl;
         handData.indexCurl = hand.skeleton.indexCurl;
         handData.middleCurl = hand.skeleton.middleCurl;
@@ -24,18 +24,19 @@ public class HandUpdater : MonoBehaviour {
         handData.offset.x = head.position.x - hand.transform.position.x;
         handData.offset.y = head.position.y - hand.transform.position.y;
         handData.offset.z = head.position.z - hand.transform.position.z;
+        return handData;
     }
 
     private void Update() {
         if (rightHand.skeleton) {
             HandPoseData right = new HandPoseData();
-            PopulateHandPoseData(rightHand, right);
+            right = PopulateHandPoseData(rightHand, right);
             HandTracking.UpdateHand(SteamVR_Input_Sources.RightHand, right);
         }
 
         if (leftHand.skeleton) {
             HandPoseData left = new HandPoseData();
-            PopulateHandPoseData(leftHand, left);
+            left = PopulateHandPoseData(leftHand, left);
             HandTracking.UpdateHand(SteamVR_Input_Sources.LeftHand, left);
         }
     }

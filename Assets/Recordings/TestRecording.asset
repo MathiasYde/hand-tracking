@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: TestRecording
   m_EditorClassIdentifier: 
   handData:
-    list:
-    - Key: 0
+    list: []
     keyCollision: 0
   accuracy: 0.4

@@ -9,13 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db7bb0387cf524c40b5247eac844c3c6, type: 3}
-  m_Name: DefaultStillMotionRecordingStoppingCriteria
+  m_Script: {fileID: 11500000, guid: e4a1578a7510f5046bd397c85c3d4a59, type: 3}
+  m_Name: DefaultTimeBasedRecordingStoppingCriteria
   m_EditorClassIdentifier: 
-  maxFrames: 6
-  maxNoise: 4
-  handDataBufferSize: 16
-  noiseBuffer: []
-  previousHandData:
-    list: []
-    keyCollision: 0
+  timeout: 4

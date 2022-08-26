@@ -2,22 +2,21 @@ using UnityEngine;
 
 [CreateAssetMenu(menuName = "Recording Methods/Time based recording method")]
 public class TimeBasedRecordingMethod : RecordingMethod {
-    [SerializeField] private float timeInterval = 1f;
-    private float timer = 0f;
+    [SerializeField] private float timeout;
+    private Timer timer;
     public override void StartRecording() {
-        timer = 0;
+        timer = new Timer(timeout);
+        timer.onTimerEnd += onTimerEnd;
     }
 
-    public override void StopRecording() {
-
+    public void onTimerEnd() {
+        timer.Reset();
+        HandTracking.CaptureHandData();
     }
+
+    public override void StopRecording() {}
 
     public override void UpdateRecording() {
-        timer += Time.deltaTime;
-        if (timer >= timeInterval) {
-            timer = 0;
-
-            HandTracking.CaptureHandData();
-        }
+        timer.Update(Time.deltaTime);
     }
 }

@@ -9,7 +9,7 @@ public class StillMotionRecordingStoppingCriteria : RecordingStoppingCriteria {
     [SerializeField] private float maxNoise; 
 
     [SerializeField] private int handDataBufferSize = 16;
-    [SerializeField] private List<float> noiseBuffer;
+    [SerializeField] private List<float> noiseBuffer = new List<float>();
     [SerializeField] private GenericDictionary<SteamVR_Input_Sources, HandPoseData> previousHandData;
     private float CalculateNoise(HandPoseData hand1, HandPoseData hand2) {
         float noise = 0f;
@@ -26,11 +26,18 @@ public class StillMotionRecordingStoppingCriteria : RecordingStoppingCriteria {
 
     public override bool ShouldStop() {
         float totalNoise = 0.0f;
-        for (int i = 1; i <= maxFrames; i++) {
-            totalNoise += noiseBuffer[noiseBuffer.Count - i];
+
+        for (int i = 1; i < maxFrames; i++) {
+            try {
+                float noise = noiseBuffer[noiseBuffer.Count - i];
+                totalNoise += noise;
+            } catch { }
+            
         }
 
-        return totalNoise < maxNoise;
+        Debug.Log(totalNoise);
+
+        return totalNoise <= maxNoise;
     }
 
     public override void UpdateRecording(GenericDictionary<SteamVR_Input_Sources, HandPoseData> handPoses) {

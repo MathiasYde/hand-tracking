@@ -11,7 +11,7 @@ public static class HandTracking {
     private static HandTrackRecording recording;
 
     public static IEnumerator Record(HandTrackRecording recording)  {
-        if (recording != null) {
+        if (HandTracking.recording != null) {
             Debug.LogError("Tried to start recording while already recording");
             yield return null;
         }
@@ -21,19 +21,27 @@ public static class HandTracking {
         stopCriteria.StartRecording();
         recordingMethod.StartRecording();
         while (!stopCriteria.ShouldStop()) {
-            recordingMethod.UpdateRecording();  
+            stopCriteria.UpdateRecording(handData);
+            recordingMethod.UpdateRecording();
+            yield return null;
         }
         stopCriteria.StopRecording();
         recordingMethod.StopRecording();
 
-        yield return null;
+        HandTracking.recording = null;
     }
 
     public static void CaptureHandData() {
         Debug.Assert(recording != null, "Tried to capture hand data, but it's not recording");
+
         foreach (KeyValuePair<SteamVR_Input_Sources, HandPoseData> pair in handData) {
             SteamVR_Input_Sources source = pair.Key;
             HandPoseData handData = pair.Value;
+
+            // create new entry for dictionary if null
+            if (!recording.handData.ContainsKey(source)) {
+                recording.handData[source] = new List<HandPoseData>();
+            }
 
             recording.handData[source].Add(handData);
         }
