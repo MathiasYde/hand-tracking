@@ -7,10 +7,14 @@ public class RequestRecording : MonoBehaviour {
     [SerializeField] private RecordingMethod recordingMethod;
     [SerializeField] private HandTrackRecording recording;
 
+    public void LogFinishRecording() {
+        VRDebugConsole.Log("Finished recording");
+    }
+
     private IEnumerator RequestRecord() {
-        Debug.Log("Starting recording");
+        VRDebugConsole.Log("Starting recording");
         yield return HandTracking.Record(recording); // maybe this needs to be wrapped in StartCoroutine
-        Debug.Log("Stopped recording");
+        VRDebugConsole.Log("Stopped recording");
     }
     private void Update() {
         if (Input.GetKeyDown(KeyCode.Space)) {

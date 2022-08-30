@@ -8,6 +8,5 @@ public class VRDebugConsoleDisplay : MonoBehaviour {
 
     private void Update() {
         output.text = VRDebugConsole.GetText();
-        VRDebugConsole.Reset();
     }
 }

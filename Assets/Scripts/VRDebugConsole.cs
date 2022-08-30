@@ -3,16 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public static class VRDebugConsole {
-    private static string textBuffer;
+    private static List<string> lines = new List<string>();
+    private static uint maxLines = 8;
     public static void Log(string text) {
-        textBuffer += text;
-        textBuffer += "\n";
+        Debug.Log(text);
+        lines.Add(text);
+        if (lines.Count > maxLines) {
+            lines.RemoveAt(0);
+        }
     }
 
-    public static void Reset() {
-        textBuffer = "";
-    }
+    public static string GetText() {
+        string text = "";
 
-    public static string GetText() { return textBuffer; }
+        foreach (string line in lines) {
+            text += line;
+            text += "\n";
+        }
+
+        return text;
+    }
 
 }

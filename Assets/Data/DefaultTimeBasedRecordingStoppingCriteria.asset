@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4a1578a7510f5046bd397c85c3d4a59, type: 3}
   m_Name: DefaultTimeBasedRecordingStoppingCriteria
   m_EditorClassIdentifier: 
-  timeout: 4
+  timeout: 2

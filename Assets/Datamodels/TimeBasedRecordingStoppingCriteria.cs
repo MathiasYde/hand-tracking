@@ -16,6 +16,7 @@ public class TimeBasedRecordingStoppingCriteria : RecordingStoppingCriteria {
     public override void StopRecording() {}
 
     public override void UpdateRecording(GenericDictionary<SteamVR_Input_Sources, HandPoseData> handPoses) {
+        Debug.Log("Updating time based recording stopping critera");
         timer.Update(Time.deltaTime);
     }
 }

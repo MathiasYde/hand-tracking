@@ -13,6 +13,188 @@ MonoBehaviour:
   m_Name: TestRecording
   m_EditorClassIdentifier: 
   handData:
-    list: []
+    list:
+    - Key: 2
+      Value: []
+    - Key: 1
+      Value:
+      - thumbCurl: 0.76644456
+        indexCurl: 0.9590883
+        middleCurl: 0.9804491
+        ringCurl: 1
+        pinkyCurl: 0.96626127
+        offset: {x: -0.14925802, y: 0.5563413, z: 0.08197251}
+      - thumbCurl: 0.76643246
+        indexCurl: 0.95908386
+        middleCurl: 0.98044914
+        ringCurl: 1
+        pinkyCurl: 0.98426133
+        offset: {x: -0.123775244, y: 0.5509732, z: 0.10046002}
+      - thumbCurl: 0.7664305
+        indexCurl: 0.9590932
+        middleCurl: 0.9804485
+        ringCurl: 1
+        pinkyCurl: 0.9441642
+        offset: {x: -0.09227729, y: 0.55328083, z: 0.1255129}
+      - thumbCurl: 0.7664307
+        indexCurl: 0.95908993
+        middleCurl: 0.9804482
+        ringCurl: 1
+        pinkyCurl: 0.9592381
+        offset: {x: -0.06973076, y: 0.55523956, z: 0.13617161}
+      - thumbCurl: 0.76642334
+        indexCurl: 0.95908976
+        middleCurl: 0.98044807
+        ringCurl: 1
+        pinkyCurl: 0.96024054
+        offset: {x: -0.0746969, y: 0.5635823, z: 0.1385639}
+      - thumbCurl: 0.7664077
+        indexCurl: 0.9590924
+        middleCurl: 0.9804482
+        ringCurl: 1
+        pinkyCurl: 0.9479311
+        offset: {x: -0.091440916, y: 0.56653976, z: 0.13757983}
+      - thumbCurl: 0.7664112
+        indexCurl: 0.9570509
+        middleCurl: 0.9804482
+        ringCurl: 1
+        pinkyCurl: 0.94416857
+        offset: {x: -0.11830962, y: 0.56707764, z: 0.13583311}
+      - thumbCurl: 0.76640576
+        indexCurl: 0.9570509
+        middleCurl: 0.9804483
+        ringCurl: 1
+        pinkyCurl: 0.94416755
+        offset: {x: -0.14439225, y: 0.573112, z: 0.16183493}
+      - thumbCurl: 0.7664275
+        indexCurl: 0.95705855
+        middleCurl: 0.98044807
+        ringCurl: 1
+        pinkyCurl: 0.9091693
+        offset: {x: -0.11801207, y: 0.581223, z: 0.2053568}
+      - thumbCurl: 0.34205955
+        indexCurl: 0.17044473
+        middleCurl: 0.24476668
+        ringCurl: 0.25227988
+        pinkyCurl: 0.250582
+        offset: {x: -0.3036952, y: 0.8698511, z: 0.14724642}
+      - thumbCurl: 0.34240115
+        indexCurl: 0.17058904
+        middleCurl: 0.24497885
+        ringCurl: 0.25250167
+        pinkyCurl: 0.25079662
+        offset: {x: -0.30184603, y: 0.86869705, z: 0.17103755}
+      - thumbCurl: 0.34077692
+        indexCurl: 0.16976193
+        middleCurl: 0.24396853
+        ringCurl: 0.25151557
+        pinkyCurl: 0.2500321
+        offset: {x: -0.29035366, y: 0.86363935, z: 0.18711594}
+      - thumbCurl: 0.33744788
+        indexCurl: 0.16800669
+        middleCurl: 0.24189498
+        ringCurl: 0.24952081
+        pinkyCurl: 0.24856794
+        offset: {x: -0.2808206, y: 0.8604481, z: 0.19068462}
+      - thumbCurl: 0.33881396
+        indexCurl: 0.16878507
+        middleCurl: 0.24274677
+        ringCurl: 0.2503116
+        pinkyCurl: 0.24906404
+        offset: {x: -0.28665924, y: 0.8613631, z: 0.18196085}
+      - thumbCurl: 0.34153724
+        indexCurl: 0.1702099
+        middleCurl: 0.24444193
+        ringCurl: 0.2519475
+        pinkyCurl: 0.25027937
+        offset: {x: -0.29309356, y: 0.86371243, z: 0.16099694}
+      - thumbCurl: 0.3402189
+        indexCurl: 0.16945173
+        middleCurl: 0.24362107
+        ringCurl: 0.2511892
+        pinkyCurl: 0.24981643
+        offset: {x: -0.27121758, y: 0.86526126, z: 0.10770801}
+      - thumbCurl: 0.33687037
+        indexCurl: 0.16761279
+        middleCurl: 0.24153388
+        ringCurl: 0.24921739
+        pinkyCurl: 0.24847503
+        offset: {x: -0.21104896, y: 0.8657423, z: 0.07077548}
+      - thumbCurl: 0.3305924
+        indexCurl: 0.16432352
+        middleCurl: 0.23761284
+        ringCurl: 0.24543285
+        pinkyCurl: 0.24564922
+        offset: {x: -0.13883388, y: 0.8633052, z: 0.09519318}
+      - thumbCurl: 0.18260264
+        indexCurl: 0.064883165
+        middleCurl: 0.13218936
+        ringCurl: 0.15036044
+        pinkyCurl: 0.19023955
+        offset: {x: -0.01882279, y: 0.20569897, z: 0.62060064}
+      - thumbCurl: 0.18259734
+        indexCurl: 0.06478164
+        middleCurl: 0.13213803
+        ringCurl: 0.15034354
+        pinkyCurl: 0.19031605
+        offset: {x: -0.014329195, y: 0.19580042, z: 0.61832666}
+      - thumbCurl: 0.18259263
+        indexCurl: 0.06470891
+        middleCurl: 0.13210063
+        ringCurl: 0.15033041
+        pinkyCurl: 0.19036932
+        offset: {x: -0.011790633, y: 0.1929456, z: 0.61921096}
+      - thumbCurl: 0.18258584
+        indexCurl: 0.06472912
+        middleCurl: 0.13210715
+        ringCurl: 0.15032873
+        pinkyCurl: 0.19034556
+        offset: {x: -0.010807037, y: 0.19818556, z: 0.6189848}
+      - thumbCurl: 0.18259263
+        indexCurl: 0.06475266
+        middleCurl: 0.1321218
+        ringCurl: 0.15033633
+        pinkyCurl: 0.19033396
+        offset: {x: -0.017996907, y: 0.19427848, z: 0.6205621}
+      - thumbCurl: 0.18259233
+        indexCurl: 0.064816125
+        middleCurl: 0.13215211
+        ringCurl: 0.15034463
+        pinkyCurl: 0.19028232
+        offset: {x: -0.026444912, y: 0.1977632, z: 0.62067664}
+      - thumbCurl: 0.18259728
+        indexCurl: 0.06484467
+        middleCurl: 0.13216825
+        ringCurl: 0.15035181
+        pinkyCurl: 0.1902647
+        offset: {x: -0.020715833, y: 0.20047867, z: 0.6183009}
+      - thumbCurl: 0.1826163
+        indexCurl: 0.064897366
+        middleCurl: 0.13220277
+        ringCurl: 0.15037152
+        pinkyCurl: 0.19024332
+        offset: {x: 0.015647054, y: 0.20189512, z: 0.6232477}
+      - thumbCurl: 0.18262589
+        indexCurl: 0.06490712
+        middleCurl: 0.13221212
+        ringCurl: 0.15037937
+        pinkyCurl: 0.1902464
+        offset: {x: 0.04047835, y: 0.19503963, z: 0.638549}
     keyCollision: 0
-  accuracy: 0.4
+  maxDistance: 2
+  count: 54
+  onRecognize:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3904192094525490513, guid: af3e7e988be8702419299612ba33a803, type: 3}
+        m_TargetAssemblyTypeName: RequestRecording, Assembly-CSharp
+        m_MethodName: LogFinishRecording
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

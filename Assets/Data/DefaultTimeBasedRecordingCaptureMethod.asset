@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dc2ea2f236b5d6429ec58fe91bb49f1, type: 3}
   m_Name: DefaultTimeBasedRecordingCaptureMethod
   m_EditorClassIdentifier: 
-  timeout: 0.5
+  timeout: 0.2
