@@ -16,9 +16,9 @@ public class HandTrackingDebugInfo : MonoBehaviour {
                 List<HandPoseData> handposes = pair.Value;
                 foreach (HandPoseData handpose in handposes)
                 {
-                    Vector3 center = handpose.offset;
+                    Vector3 center = handpose.offset + head.position;
                     Gizmos.color = Color.blue;
-                    Gizmos.DrawSphere(center, 0.1f);
+                    Gizmos.DrawWireSphere(center, recording.positionalMaxDistance);
                 }
 
             }

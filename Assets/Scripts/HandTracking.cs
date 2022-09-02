@@ -53,17 +53,19 @@ public static class HandTracking {
             HandTrackRecording recording = pair1.Item1;
             int progress = pair1.Item2;
 
-            float totalDistance = 0.0f;
+            bool disqualified = false;
             foreach (KeyValuePair<SteamVR_Input_Sources, HandPoseData> pair2 in handData) {
                 SteamVR_Input_Sources source = pair2.Key;
                 HandPoseData data = pair2.Value;
 
                 // todo(mathias) sum up distance
+                if (HandPoseData.CurlDistance(handData[source], data) > recording.curlMaxDistance) { disqualified = true; }
+                if (HandPoseData.PositionalDistance(handData[source], data) > recording.positionalMaxDistance) { disqualified = true; }
 
             }
 
             // skip if this pose is disqualified
-            if (totalDistance > recording.maxDistance) { continue; }
+            if (disqualified) { continue; }
 
             progress += 1;
 
