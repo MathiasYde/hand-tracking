@@ -10,7 +10,7 @@ public static class HandTracking {
     public static RecordingStoppingCriteria stopCriteria;
     public static RecordingMethod recordingMethod;
     private static HandTrackRecording recording;
-    [SerializeField] private static List<Tuple<HandTrackRecording, int>> recognizeRecordings = new List<Tuple<HandTrackRecording, int>>();
+    public static HandTrackRecordingSet recordingSet = new HandTrackRecordingSet();
 
     public static HandTrackRecording GetCurrentRecording() => recording;
 
@@ -20,8 +20,7 @@ public static class HandTracking {
             yield return null;
         }
 
-        recording.handData = new GenericDictionary<SteamVR_Input_Sources, List<HandPoseData>>();
-        recording.count = 0;
+        recording.Reset();
         HandTracking.recording = recording;
         
         stopCriteria.StartRecording();
@@ -38,10 +37,10 @@ public static class HandTracking {
         HandTracking.recording = null;
     }
     public static void AddRecordingToRecognize(HandTrackRecording recording) {
-        recognizeRecordings.Add(new Tuple<HandTrackRecording, int>(recording, 0));
+        recordingSet.recordings.Add(new Tuple<HandTrackRecording, int>(recording, 0));
     }
     public static void ResetHandGestureRecognitionProgress() {
-        foreach (Tuple<HandTrackRecording, int> pair in recognizeRecordings) {
+        foreach (Tuple<HandTrackRecording, int> pair in recordingSet.recordings) {
             HandTrackRecording recording = pair.Item1;
             int progress = pair.Item2;
             progress = 0;
@@ -49,7 +48,7 @@ public static class HandTracking {
     }
 
     public static void RecognizeHandGestures(GenericDictionary<SteamVR_Input_Sources, HandPoseData> handData) {
-        foreach (Tuple<HandTrackRecording, int> pair1 in recognizeRecordings) {
+        foreach (Tuple<HandTrackRecording, int> pair1 in recordingSet.recordings) {
             HandTrackRecording recording = pair1.Item1;
             int progress = pair1.Item2;
 
@@ -58,9 +57,8 @@ public static class HandTracking {
                 SteamVR_Input_Sources source = pair2.Key;
                 HandPoseData data = pair2.Value;
 
-                // todo(mathias) sum up distance
-                if (HandPoseData.CurlDistance(handData[source], data) > recording.curlMaxDistance) { disqualified = true; }
-                if (HandPoseData.PositionalDistance(handData[source], data) > recording.positionalMaxDistance) { disqualified = true; }
+                if (recording.positionalMaxDistance.Enabled && HandPoseData.PositionalDistance(handData[source], data) > recording.positionalMaxDistance) { disqualified = true; }
+                if (recording.curlMaxDistance.Enabled && HandPoseData.CurlDistance(handData[source], data) > recording.curlMaxDistance) { disqualified = true; }
 
             }
 
@@ -73,22 +71,25 @@ public static class HandTracking {
             if (progress >= recording.count) {
                 recording.onRecognize?.Invoke();
 
-                // reset other recordings progress
+                // reset recordings progress
                 ResetHandGestureRecognitionProgress();
             }
         }
     }
 
     public static void CaptureHandData() {
-        if (recording == null) { return; }
+        if (recording == null) {
+            Debug.LogWarning("Tried to capture hand data, but no recording is present");
+            return;
+        }
 
         foreach (KeyValuePair<SteamVR_Input_Sources, HandPoseData> pair in currentHandData) {
             SteamVR_Input_Sources source = pair.Key;
             HandPoseData data = pair.Value;
 
-            // create new entry for dictionary if null
+            // skip this source if not present in recording
             if (!recording.handData.ContainsKey(source)) {
-                recording.handData[source] = new List<HandPoseData>();
+                continue;
             }
 
             recording.handData[source].Add(data);

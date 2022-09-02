@@ -25,14 +25,11 @@ public class HandUpdater : MonoBehaviour {
         handData.ringCurl = hand.skeleton.ringCurl;
         handData.pinkyCurl = hand.skeleton.pinkyCurl;
 
+        // TODO(mathias) make relative to camera forward direction
         handData.offset.x = (head.position.x - hand.skeleton.GetBone(1).position.x) * -1;
         handData.offset.y = (head.position.y - hand.skeleton.GetBone(1).position.y) * -1;
         handData.offset.z = (head.position.z - hand.skeleton.GetBone(1).position.z) * -1;
  
-
-        //handData.offset.z = hand.transform.position.x - head.position.x;
-        //handData.offset.y = hand.transform.position.y - head.position.y;
-        //handData.offset.z = hand.transform.position.z - head.position.z;
         return handData;
     }
 

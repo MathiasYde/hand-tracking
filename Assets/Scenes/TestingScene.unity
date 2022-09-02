@@ -157,9 +157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leftHand: {fileID: 2097832653}
-  leftHandOrigin: {fileID: 0}
   rightHand: {fileID: 202579928}
-  rightHandOrigin: {fileID: 0}
   head: {fileID: 343623755}
 --- !u!114 &423493128
 MonoBehaviour:
@@ -675,7 +673,7 @@ GameObject:
   - component: {fileID: 1696377021}
   - component: {fileID: 1696377020}
   m_Layer: 0
-  m_Name: Plane (1)
+  m_Name: Mirror
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
