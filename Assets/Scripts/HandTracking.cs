@@ -10,7 +10,9 @@ public static class HandTracking {
     public static RecordingStoppingCriteria stopCriteria;
     public static RecordingMethod recordingMethod;
     private static HandTrackRecording recording;
-    public static HandTrackRecordingSet recordingSet = new HandTrackRecordingSet();
+    private static List<HandTrackRecording> recordings = new List<HandTrackRecording>();
+
+    public static List<HandTrackRecording> GetRecordings() => recordings;
 
     public static HandTrackRecording GetCurrentRecording() => recording;
 
@@ -37,38 +39,48 @@ public static class HandTracking {
         HandTracking.recording = null;
     }
     public static void AddRecordingToRecognize(HandTrackRecording recording) {
-        recordingSet.recordings.Add(new Tuple<HandTrackRecording, int>(recording, 0));
+        recordings.Add(recording);
     }
     public static void ResetHandGestureRecognitionProgress() {
-        foreach (Tuple<HandTrackRecording, int> pair in recordingSet.recordings) {
-            HandTrackRecording recording = pair.Item1;
-            int progress = pair.Item2;
-            progress = 0;
+        foreach (HandTrackRecording recording in recordings) {
+            recording.recognitionProgress = 0;
         }
     }
 
     public static void RecognizeHandGestures(GenericDictionary<SteamVR_Input_Sources, HandPoseData> handData) {
-        foreach (Tuple<HandTrackRecording, int> pair1 in recordingSet.recordings) {
-            HandTrackRecording recording = pair1.Item1;
-            int progress = pair1.Item2;
+        foreach (HandTrackRecording recording in recordings) {
 
             bool disqualified = false;
             foreach (KeyValuePair<SteamVR_Input_Sources, HandPoseData> pair2 in handData) {
                 SteamVR_Input_Sources source = pair2.Key;
                 HandPoseData data = pair2.Value;
 
-                if (recording.positionalMaxDistance.Enabled && HandPoseData.PositionalDistance(handData[source], data) > recording.positionalMaxDistance) { disqualified = true; }
-                if (recording.curlMaxDistance.Enabled && HandPoseData.CurlDistance(handData[source], data) > recording.curlMaxDistance) { disqualified = true; }
+                float positionalDistance = HandPoseData.PositionalDistance(handData[source], data);
+                float curlDistance = HandPoseData.CurlDistance(handData[source], data);
+
+                if (
+                    recording.positionalMaxDistance.Enabled && 
+                    positionalDistance > recording.positionalMaxDistance) {
+                    Debug.Log("Disqualified from positional distance");
+                    disqualified = true;
+                }
+
+                if (
+                    recording.curlMaxDistance.Enabled &&
+                    curlDistance > recording.curlMaxDistance) {
+                    Debug.Log("Disqualified from curl distance");
+                    disqualified = true;
+                }
 
             }
 
             // skip if this pose is disqualified
             if (disqualified) { continue; }
 
-            progress += 1;
+            recording.recognitionProgress += 1;
 
             // test if recording is executed
-            if (progress >= recording.count) {
+            if (recording.recognitionProgress >= recording.count) {
                 recording.onRecognize?.Invoke();
 
                 // reset recordings progress
@@ -98,10 +110,9 @@ public static class HandTracking {
     }
 
     public static void Update() {
-        if (recording != null) // dont update if not recording
-        {
-        stopCriteria?.UpdateRecording(currentHandData);
-        recordingMethod?.UpdateRecording();
+        if (recording != null) {
+            stopCriteria?.UpdateRecording(currentHandData);
+            recordingMethod?.UpdateRecording();
         }
         RecognizeHandGestures(currentHandData);
     }

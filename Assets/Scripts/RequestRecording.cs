@@ -6,7 +6,6 @@ public class RequestRecording : MonoBehaviour {
     [SerializeField] private RecordingStoppingCriteria stopCriteria;
     [SerializeField] private RecordingMethod recordingMethod;
     [SerializeField] private HandTrackRecording recording;
-    [SerializeField] private HandTrackRecordingSet recordingSet;
 
     public void LogOnRecognized()
     {
@@ -15,11 +14,6 @@ public class RequestRecording : MonoBehaviour {
 
     public void LogFinishRecording() {
         VRDebugConsole.Log("Finished recording");
-    }
-
-    public void Start()
-    {
-        HandTracking.recordingSet = recordingSet;
     }
 
     private IEnumerator RequestRecord() {

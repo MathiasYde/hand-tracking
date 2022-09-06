@@ -21,7 +21,7 @@ MonoBehaviour:
     keyCollision: 0
   positionalMaxDistance:
     enabled: 1
-    value: 0.4
+    value: 0.2
   curlMaxDistance:
     enabled: 0
     value: 0.4

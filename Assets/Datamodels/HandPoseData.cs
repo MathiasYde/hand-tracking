@@ -9,6 +9,7 @@ public struct HandPoseData {
     public float middleCurl;
     public float ringCurl;
     public float pinkyCurl;
+
     public Vector3 offset; // relative to head
 
     public static float CurlDistance(HandPoseData handData1, HandPoseData handData2) {
