@@ -17,6 +17,7 @@ public class HandTrackingDebugInfo : MonoBehaviour {
         }
 
         foreach (HandTrackRecording recording in recordings) {
+            if (recording == null) { continue; }
             foreach (KeyValuePair<SteamVR_Input_Sources, List<HandPoseData>> pair2 in recording.handData) {
                 SteamVR_Input_Sources source = pair2.Key;
                 List<HandPoseData> handPoseDatas = pair2.Value;

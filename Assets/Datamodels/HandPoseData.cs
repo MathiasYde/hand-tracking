@@ -11,6 +11,7 @@ public struct HandPoseData {
     public float pinkyCurl;
 
     public Vector3 offset; // relative to head
+    public Vector3 head;
 
     public static float CurlDistance(HandPoseData handData1, HandPoseData handData2) {
         float distance = 0.0f;
@@ -25,11 +26,14 @@ public struct HandPoseData {
     }
 
     public static float PositionalDistance(HandPoseData handData1, HandPoseData handData2) {
-        float distance = 0.0f;
+        Vector3 point1 = handData1.offset;
+        Vector3 point2 = handData2.offset;
 
-        distance += handData2.offset.x - handData1.offset.x;
-        distance += handData2.offset.y - handData1.offset.y;
-        distance += handData2.offset.z - handData1.offset.z;
+        float sum = 0f;
+        sum += Mathf.Pow(point2.x - point1.x, 2);
+        sum += Mathf.Pow(point2.y - point1.y, 2);
+        sum += Mathf.Pow(point2.z - point1.z, 2);
+        float distance = Mathf.Sqrt(sum);
 
         return distance;
     }

@@ -14,6 +14,9 @@ public static class HandTracking {
 
     public static List<HandTrackRecording> GetRecordings() => recordings;
 
+    private static Timer recognitionCooldown = new Timer(0.5f);
+    private static bool recognitionDisabled = false;
+
     public static HandTrackRecording GetCurrentRecording() => recording;
 
     public static IEnumerator Record(HandTrackRecording recording)  {
@@ -47,41 +50,50 @@ public static class HandTracking {
         }
     }
 
-    public static void RecognizeHandGestures(GenericDictionary<SteamVR_Input_Sources, HandPoseData> handData) {
+    public static void RecognizeHandGestures(GenericDictionary<SteamVR_Input_Sources, HandPoseData> currentHandData) {
         foreach (HandTrackRecording recording in recordings) {
-
             bool disqualified = false;
-            foreach (KeyValuePair<SteamVR_Input_Sources, HandPoseData> pair2 in handData) {
+
+            foreach (KeyValuePair<SteamVR_Input_Sources, HandPoseData> pair2 in currentHandData) {
                 SteamVR_Input_Sources source = pair2.Key;
-                HandPoseData data = pair2.Value;
+                HandPoseData currentHandPose = pair2.Value;
 
-                float positionalDistance = HandPoseData.PositionalDistance(handData[source], data);
-                float curlDistance = HandPoseData.CurlDistance(handData[source], data);
-
-                if (
-                    recording.positionalMaxDistance.Enabled && 
-                    positionalDistance > recording.positionalMaxDistance) {
-                    Debug.Log("Disqualified from positional distance");
-                    disqualified = true;
+                if (!recording.handData.ContainsKey(source)) {
+                    continue;
                 }
 
-                if (
-                    recording.curlMaxDistance.Enabled &&
-                    curlDistance > recording.curlMaxDistance) {
-                    Debug.Log("Disqualified from curl distance");
-                    disqualified = true;
-                }
+                foreach (HandPoseData recordingHandData in recording.handData[source]) {
+                    float positionalDistance = HandPoseData.PositionalDistance(recordingHandData, currentHandPose);
+                    float curlDistance = HandPoseData.CurlDistance(recordingHandData, currentHandPose);
 
+                    if (
+                        recording.positionalMaxDistance.Enabled &&
+                        (positionalDistance > recording.positionalMaxDistance))
+                    {
+                        Debug.Log("Disqualified from positional distance");
+                        disqualified = true;
+                    }
+
+                    if (
+                        recording.curlMaxDistance.Enabled &&
+                        (curlDistance > recording.curlMaxDistance))
+                    {
+                        Debug.Log("Disqualified from curl distance");
+                        disqualified = true;
+                    }
+                }
             }
 
-            // skip if this pose is disqualified
             if (disqualified) { continue; }
 
             recording.recognitionProgress += 1;
 
             // test if recording is executed
-            if (recording.recognitionProgress >= recording.count) {
+            if (recording.recognitionProgress >= recording.count)
+            {
                 recording.onRecognize?.Invoke();
+                recognitionDisabled = true;
+                recognitionCooldown.Reset();
 
                 // reset recordings progress
                 ResetHandGestureRecognitionProgress();
@@ -110,11 +122,18 @@ public static class HandTracking {
     }
 
     public static void Update() {
+        recognitionCooldown.Update(Time.deltaTime);
+
         if (recording != null) {
             stopCriteria?.UpdateRecording(currentHandData);
             recordingMethod?.UpdateRecording();
         }
         RecognizeHandGestures(currentHandData);
+    }
+
+    public static void Start()
+    {
+        recognitionCooldown.onTimerEnd += () => { recognitionDisabled = false; };
     }
 
     public static void UpdateHand(SteamVR_Input_Sources hand, HandPoseData pose) {

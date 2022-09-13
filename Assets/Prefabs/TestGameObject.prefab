@@ -46,3 +46,4 @@ MonoBehaviour:
   stopCriteria: {fileID: 11400000, guid: a6425e9e68009e348b629b8a054c04e0, type: 2}
   recordingMethod: {fileID: 11400000, guid: 7af68407022ea9e428919dd8405a46ca, type: 2}
   recording: {fileID: 11400000, guid: 3014fe24e2957464b99def9e3e5d4522, type: 2}
+  gameObject: {fileID: 919132149155446097, guid: c626df22f661a7f4e9be6b69c2813280, type: 3}

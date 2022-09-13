@@ -1028,17 +1028,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: TestGameObject
       objectReference: {fileID: 0}
+    - target: {fileID: 3904192094525490513, guid: af3e7e988be8702419299612ba33a803, type: 3}
+      propertyPath: gameObject
+      value: 
+      objectReference: {fileID: 3893588731202687690, guid: 9882fba05647ce442aff6eebe94b2cbb, type: 3}
     - target: {fileID: 3904192094525490514, guid: af3e7e988be8702419299612ba33a803, type: 3}
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3904192094525490514, guid: af3e7e988be8702419299612ba33a803, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 1.02
       objectReference: {fileID: 0}
     - target: {fileID: 3904192094525490514, guid: af3e7e988be8702419299612ba33a803, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.34
       objectReference: {fileID: 0}
     - target: {fileID: 3904192094525490514, guid: af3e7e988be8702419299612ba33a803, type: 3}
       propertyPath: m_LocalPosition.z
