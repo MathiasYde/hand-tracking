@@ -7,6 +7,8 @@ using Valve.VR;
 
 [CreateAssetMenu(menuName ="Hand Track Recording")]
 public class HandTrackRecording : ScriptableObject {
+	public String name;
+
 	public GenericDictionary<SteamVR_Input_Sources, List<HandPoseData>> handData = new GenericDictionary<SteamVR_Input_Sources, List<HandPoseData>>();
 
 	public Optional<float> positionalMaxDistance = new Optional<float>(0.4f); // meters radius

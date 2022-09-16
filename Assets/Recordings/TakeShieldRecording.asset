@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e9d0a5a7d42025469fa9efc97acf756, type: 3}
+  m_Name: TakeShieldRecording
+  m_EditorClassIdentifier: 
+  name: TakeShield
+  handData:
+    list:
+    - Key: 1
+      Value:
+      - thumbCurl: 0.0922817
+        indexCurl: 0.04306692
+        middleCurl: 0.076324806
+        ringCurl: 0.083639644
+        pinkyCurl: 0.0958323
+        offset: {x: 0.10121679, y: 0.11985409, z: 0.21142864}
+        head: {x: 0.30439538, y: 1.5720569, z: 0.10304905}
+      - thumbCurl: 0.1723792
+        indexCurl: 0.08609078
+        middleCurl: 0.13420314
+        ringCurl: 0.14042069
+        pinkyCurl: 0.134339
+        offset: {x: -0.054123014, y: 0.085538745, z: 0.22061366}
+        head: {x: 0.30993855, y: 1.580143, z: 0.11066824}
+    keyCollision: 0
+  positionalMaxDistance:
+    enabled: 1
+    value: 0.2
+  curlMaxDistance:
+    enabled: 0
+    value: 4
+  count: 2
+  recognitionProgress: 0
+  onRecognize:
+    m_PersistentCalls:
+      m_Calls: []

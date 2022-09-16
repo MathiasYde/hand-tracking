@@ -12,39 +12,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e9d0a5a7d42025469fa9efc97acf756, type: 3}
   m_Name: TestRecording
   m_EditorClassIdentifier: 
+  name: TestRecording
   handData:
     list:
-    - Key: 1
+    - Key: 2
       Value:
-      - thumbCurl: 0.11959195
-        indexCurl: 0.046375107
-        middleCurl: 0.086457245
-        ringCurl: 0.10526416
-        pinkyCurl: 0.12711804
-        offset: {x: 0.20972213, y: -0.3377424, z: 0.23861468}
-        head: {x: -0.51240027, y: 1.081876, z: 0.18126369}
-      - thumbCurl: 0.10988176
-        indexCurl: 0.044294477
-        middleCurl: 0.081192255
-        ringCurl: 0.097892195
-        pinkyCurl: 0.11677502
-        offset: {x: 0.23868269, y: -0.36920047, z: 0.22486931}
-        head: {x: -0.52269876, y: 1.0894034, z: 0.18903238}
-      - thumbCurl: 0.016949773
-        indexCurl: 0.010504775
-        middleCurl: 0.026390541
-        ringCurl: 0.01593143
-        pinkyCurl: 0.01562969
-        offset: {x: 0.25656983, y: -0.38637555, z: 0.21171764}
-        head: {x: -0.5435468, y: 1.1007726, z: 0.19567025}
+      - thumbCurl: 0.7900982
+        indexCurl: 0.55402976
+        middleCurl: 0.092931904
+        ringCurl: 0.34778953
+        pinkyCurl: 1
+        offset: {x: -0.00097233057, y: 0.122538686, z: -0.11430815}
+        head: {x: 0.28327703, y: 1.1233919, z: -0.23646143}
+      - thumbCurl: 0.24761438
+        indexCurl: 0.12645772
+        middleCurl: 0.18429765
+        ringCurl: 0.1900698
+        pinkyCurl: 0.18926093
+        offset: {x: 0.051535845, y: -0.51648605, z: -0.44716564}
+        head: {x: 0.33154917, y: 1.1151879, z: -0.22679159}
     keyCollision: 0
   positionalMaxDistance:
     enabled: 1
-    value: 0.3
+    value: 0.4
   curlMaxDistance:
     enabled: 0
     value: 0.4
-  count: 3
+  count: 2
   recognitionProgress: 0
   onRecognize:
     m_PersistentCalls:

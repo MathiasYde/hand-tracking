@@ -6,12 +6,10 @@ public class RequestRecording : MonoBehaviour {
     [SerializeField] private RecordingStoppingCriteria stopCriteria;
     [SerializeField] private RecordingMethod recordingMethod;
     [SerializeField] private HandTrackRecording recording;
-    public GameObject gameObject;
 
     public void LogOnRecognized()
     {
         VRDebugConsole.Log("Recognized recording");
-        Instantiate(gameObject, transform.position, Quaternion.identity, this.transform);
     }
 
     public void LogFinishRecording() {

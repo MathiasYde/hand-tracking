@@ -14,10 +14,24 @@ public static class HandTracking {
 
     public static List<HandTrackRecording> GetRecordings() => recordings;
 
-    private static Timer recognitionCooldown = new Timer(0.5f);
+    private static Timer recognitionCooldown = new Timer(1.0f);
     private static bool recognitionDisabled = false;
 
     public static HandTrackRecording GetCurrentRecording() => recording;
+
+    public static GenericDictionary<SteamVR_Input_Sources, HandPoseData> GetCurrentHandData() => currentHandData;
+
+    public static void RemoveRecordingFromRecognitionSet(HandTrackRecording recording)
+    {
+        VRDebugConsole.Log("Removed recording to recognition set");
+        recordings.Remove(recording);
+    }
+
+    public static void AddRecordingFromRecognitionSet(HandTrackRecording recording)
+    {
+        VRDebugConsole.Log("Added recording to recognition set");
+        recordings.Add(recording);
+    }
 
     public static IEnumerator Record(HandTrackRecording recording)  {
         if (HandTracking.recording != null) {
@@ -38,11 +52,8 @@ public static class HandTracking {
         stopCriteria.StopRecording();
         recordingMethod.StopRecording();
 
-        AddRecordingToRecognize(HandTracking.recording);
+        AddRecordingFromRecognitionSet(HandTracking.recording);
         HandTracking.recording = null;
-    }
-    public static void AddRecordingToRecognize(HandTrackRecording recording) {
-        recordings.Add(recording);
     }
     public static void ResetHandGestureRecognitionProgress() {
         foreach (HandTrackRecording recording in recordings) {
@@ -52,47 +63,49 @@ public static class HandTracking {
 
     public static void RecognizeHandGestures(GenericDictionary<SteamVR_Input_Sources, HandPoseData> currentHandData) {
         foreach (HandTrackRecording recording in recordings) {
+            Debug.Log($"Attempting to recognize recording ${recording.name}");
             bool disqualified = false;
 
-            foreach (KeyValuePair<SteamVR_Input_Sources, HandPoseData> pair2 in currentHandData) {
-                SteamVR_Input_Sources source = pair2.Key;
-                HandPoseData currentHandPose = pair2.Value;
+            foreach (KeyValuePair<SteamVR_Input_Sources, List<HandPoseData>> pair in recording.handData)
+            {
+                SteamVR_Input_Sources source = pair.Key;
+                List<HandPoseData> handposes = pair.Value;
+                HandPoseData currentHandPose = currentHandData[source];
 
-                if (!recording.handData.ContainsKey(source)) {
-                    continue;
-                }
-
-                foreach (HandPoseData recordingHandData in recording.handData[source]) {
-                    float positionalDistance = HandPoseData.PositionalDistance(recordingHandData, currentHandPose);
-                    float curlDistance = HandPoseData.CurlDistance(recordingHandData, currentHandPose);
+                foreach (HandPoseData handPose in handposes) {
+                    float positionalDistance = HandPoseData.PositionalDistance(handPose, currentHandPose);
+                    float curlDistance = HandPoseData.CurlDistance(handPose, currentHandPose);
 
                     if (
                         recording.positionalMaxDistance.Enabled &&
-                        (positionalDistance > recording.positionalMaxDistance))
-                    {
-                        Debug.Log("Disqualified from positional distance");
+                        (positionalDistance > recording.positionalMaxDistance)) {
                         disqualified = true;
+                        goto break_loop;
                     }
 
                     if (
                         recording.curlMaxDistance.Enabled &&
                         (curlDistance > recording.curlMaxDistance))
                     {
-                        Debug.Log("Disqualified from curl distance");
                         disqualified = true;
+                        goto break_loop;
                     }
+
+
                 }
             }
 
+
+            break_loop:
             if (disqualified) { continue; }
 
             recording.recognitionProgress += 1;
 
             // test if recording is executed
-            if (recording.recognitionProgress >= recording.count)
+            if (recording.recognitionProgress >= recording.count - 1)
             {
                 recording.onRecognize?.Invoke();
-                recognitionDisabled = true;
+                HandTracking.recognitionDisabled = true;
                 recognitionCooldown.Reset();
 
                 // reset recordings progress
@@ -101,7 +114,12 @@ public static class HandTracking {
         }
     }
 
-    public static void CaptureHandData() {
+    public static void CaptureHandData()
+    {
+        CaptureHandData(HandTracking.recording);
+    }
+
+    public static void CaptureHandData(HandTrackRecording recording) {
         if (recording == null) {
             Debug.LogWarning("Tried to capture hand data, but no recording is present");
             return;
@@ -128,7 +146,9 @@ public static class HandTracking {
             stopCriteria?.UpdateRecording(currentHandData);
             recordingMethod?.UpdateRecording();
         }
-        RecognizeHandGestures(currentHandData);
+        if (recognitionDisabled == false) {
+            RecognizeHandGestures(currentHandData);
+        }
     }
 
     public static void Start()

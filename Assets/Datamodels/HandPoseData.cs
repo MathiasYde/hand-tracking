@@ -26,14 +26,16 @@ public struct HandPoseData {
     }
 
     public static float PositionalDistance(HandPoseData handData1, HandPoseData handData2) {
-        Vector3 point1 = handData1.offset;
-        Vector3 point2 = handData2.offset;
+        Vector3 point1 = handData1.offset + handData1.head;
+        Vector3 point2 = handData2.offset + handData2.head;
 
         float sum = 0f;
         sum += Mathf.Pow(point2.x - point1.x, 2);
         sum += Mathf.Pow(point2.y - point1.y, 2);
         sum += Mathf.Pow(point2.z - point1.z, 2);
         float distance = Mathf.Sqrt(sum);
+
+        Debug.Log(distance);
 
         return distance;
     }
