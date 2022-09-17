@@ -14,7 +14,7 @@ public class HandTrackingDebugInfo : MonoBehaviour {
 
     void OnDrawGizmos() {
         List<HandTrackRecording> recordings = HandTracking.GetRecordings();
-        GenericDictionary<SteamVR_Input_Sources, HandPoseData> currentHandData = HandTracking.GetCurrentHandData();
+        GenericDictionary<SteamVR_Input_Sources, HandPoseData> currentHandPoses = HandTracking.GetCurrentHandPoses();
 
         foreach (HandTrackRecording recording in recordings) {
             if (recording == null) { continue; }
@@ -36,7 +36,7 @@ public class HandTrackingDebugInfo : MonoBehaviour {
                 
                 try {
                     HandPoseData currentRecognizedHandData = handPoseDatas[recording.recognitionProgress];
-                    HandPoseData currentSource = currentHandData[source];
+                    HandPoseData currentSource = currentHandPoses[source];
 
                     Gizmos.color = Color.magenta;
                     Vector3 position1 = currentRecognizedHandData.offset + currentSource.head;
