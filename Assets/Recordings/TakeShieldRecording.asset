@@ -17,24 +17,26 @@ MonoBehaviour:
     list:
     - Key: 1
       Value:
-      - thumbCurl: 0.0922817
-        indexCurl: 0.04306692
-        middleCurl: 0.076324806
-        ringCurl: 0.083639644
-        pinkyCurl: 0.0958323
-        offset: {x: 0.10121679, y: 0.11985409, z: 0.21142864}
-        head: {x: 0.30439538, y: 1.5720569, z: 0.10304905}
-      - thumbCurl: 0.1723792
-        indexCurl: 0.08609078
-        middleCurl: 0.13420314
-        ringCurl: 0.14042069
-        pinkyCurl: 0.134339
-        offset: {x: -0.054123014, y: 0.085538745, z: 0.22061366}
-        head: {x: 0.30993855, y: 1.580143, z: 0.11066824}
+      - source: 1
+        thumbCurl: 0.9627033
+        indexCurl: 1
+        middleCurl: 0.9698036
+        ringCurl: 1
+        pinkyCurl: 0.949267
+        offset: {x: -0.013555527, y: 0.17402852, z: -0.057998}
+        head: {x: 0.76946545, y: 1.6846148, z: 0.7309036}
+      - source: 1
+        thumbCurl: 0.9808248
+        indexCurl: 1
+        middleCurl: 1
+        ringCurl: 1
+        pinkyCurl: 0.9153344
+        offset: {x: -0.14653593, y: -0.58184505, z: 0.008707762}
+        head: {x: 0.7486268, y: 1.6753597, z: 0.75693107}
     keyCollision: 0
   positionalMaxDistance:
     enabled: 1
-    value: 0.2
+    value: 0.35
   curlMaxDistance:
     enabled: 0
     value: 4

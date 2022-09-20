@@ -69,8 +69,9 @@ public static class HandTracking {
                 
                 // disqualify by positional distance
                 float positionalDistance = HandPoseData.PositionalDistance(currentHandPose, recordingHandPose);
+                Debug.Log(positionalDistance <= recording.positionalMaxDistance);
                 if (recording.positionalMaxDistance.Enabled &&
-                    (positionalDistance > recording.positionalMaxDistance)) {
+                    (positionalDistance <= recording.positionalMaxDistance)) {
                     disqualified = true;
                     goto break_loop;
                 }
@@ -78,7 +79,7 @@ public static class HandTracking {
                 // disqualify by curl distance
                 float curlDistance = HandPoseData.CurlDistance(currentHandPose, recordingHandPose);
                 if (recording.curlMaxDistance.Enabled &&
-                    (curlDistance > recording.curlMaxDistance)) {
+                    (curlDistance <= recording.curlMaxDistance)) {
                     disqualified = true;
                     goto break_loop;
                 }

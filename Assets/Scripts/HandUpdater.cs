@@ -35,7 +35,7 @@ public class HandUpdater : MonoBehaviour {
         // update HandTracking about each hand
         foreach ((SteamVR_Input_Sources source, Hand hand) in sources) {
             HandPoseData handPoseData = new HandPoseData();
-            PopulateHandPoseData(source, handPoseData, hand);
+            handPoseData = PopulateHandPoseData(source, handPoseData, hand);
             HandTracking.UpdateHand(source, handPoseData);
         }
         
@@ -43,12 +43,17 @@ public class HandUpdater : MonoBehaviour {
     }
 
     // Populate HandPoseData struct for a hand
-    private void PopulateHandPoseData_Hand(HandPoseData handPoseData, Hand hand) {
-        handPoseData.thumbCurl = hand.skeleton.thumbCurl;
-        handPoseData.indexCurl = hand.skeleton.indexCurl;
-        handPoseData.middleCurl = hand.skeleton.middleCurl;
-        handPoseData.ringCurl = hand.skeleton.ringCurl;
-        handPoseData.pinkyCurl = hand.skeleton.pinkyCurl;
+    private HandPoseData PopulateHandPoseData_Hand(HandPoseData handPoseData, Hand hand) {
+        try {
+            handPoseData.thumbCurl = hand.skeleton.thumbCurl;
+            handPoseData.indexCurl = hand.skeleton.indexCurl;
+            handPoseData.middleCurl = hand.skeleton.middleCurl;
+            handPoseData.ringCurl = hand.skeleton.ringCurl;
+            handPoseData.pinkyCurl = hand.skeleton.pinkyCurl;
+        } catch {
+            Debug.LogWarning("Failed to set curl");
+        }
+
         
         handPoseData.head = head.position;
         
@@ -56,26 +61,28 @@ public class HandUpdater : MonoBehaviour {
         Transform wrist = hand.skeleton.GetBone(1);
         
         handPoseData.offset = (head.position - wrist.position) * -1;
-        
         // handPoseData.offset.x = (head.position.x - wrist.position.x) * -1;
         // handPoseData.offset.y = (head.position.y - wrist.position.y) * -1;
         // handPoseData.offset.z = (head.position.z - wrist.position.z) * -1;
+        return handPoseData;
     }
     
-    private void PopulateHandPoseData(SteamVR_Input_Sources source, HandPoseData handPoseData, Hand hand) {
+    private HandPoseData PopulateHandPoseData(SteamVR_Input_Sources source, HandPoseData handPoseData, Hand hand) {
         handPoseData.source = source;
-        
+
         switch (source) {
             case SteamVR_Input_Sources.RightHand:
-                PopulateHandPoseData_Hand(handPoseData, hand);
+                handPoseData = PopulateHandPoseData_Hand(handPoseData, hand);
                 break;
             case SteamVR_Input_Sources.LeftHand:
-                PopulateHandPoseData_Hand(handPoseData, hand);
+                handPoseData = PopulateHandPoseData_Hand(handPoseData, hand);
                 break;
             default:
                 Debug.LogWarning("Tried to populate hand pose data for non-existing source");
                 break;
         }
+
+        return handPoseData;
     }
 
 #if UNITY_EDITOR

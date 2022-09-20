@@ -28,10 +28,10 @@ public struct HandPoseData {
         return distance;
     }
 
-    public static float PositionalDistance(HandPoseData handData1, HandPoseData handData2) {
-        Vector3 point1 = handData1.offset + handData1.head;
-        Vector3 point2 = handData2.offset + handData2.head;
-
-        return Vector3.Distance(point1, point2);;
+    public static float PositionalDistance(HandPoseData current, HandPoseData recording) {
+        Debug.Log("current " + current.offset);
+        Debug.Log("recording " + recording.offset);
+        Debug.Log(Vector3.Distance(current.offset, recording.offset));
+        return Vector3.Distance(current.offset, recording.offset);
     }
 }
