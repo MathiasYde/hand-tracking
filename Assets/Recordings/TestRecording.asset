@@ -12,20 +12,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e9d0a5a7d42025469fa9efc97acf756, type: 3}
   m_Name: TestRecording
   m_EditorClassIdentifier: 
+  name: TestRecording
   handData:
     list:
-    - Key: 1
-      Value: []
     - Key: 2
-      Value: []
+      Value:
+      - thumbCurl: 0.7900982
+        indexCurl: 0.55402976
+        middleCurl: 0.092931904
+        ringCurl: 0.34778953
+        pinkyCurl: 1
+        offset: {x: -0.00097233057, y: 0.122538686, z: -0.11430815}
+        head: {x: 0.28327703, y: 1.1233919, z: -0.23646143}
+      - thumbCurl: 0.24761438
+        indexCurl: 0.12645772
+        middleCurl: 0.18429765
+        ringCurl: 0.1900698
+        pinkyCurl: 0.18926093
+        offset: {x: 0.051535845, y: -0.51648605, z: -0.44716564}
+        head: {x: 0.33154917, y: 1.1151879, z: -0.22679159}
     keyCollision: 0
   positionalMaxDistance:
     enabled: 1
-    value: 0.2
+    value: 0.4
   curlMaxDistance:
     enabled: 0
     value: 0.4
-  count: 0
+  count: 2
+  recognitionProgress: 0
   onRecognize:
     m_PersistentCalls:
       m_Calls:
