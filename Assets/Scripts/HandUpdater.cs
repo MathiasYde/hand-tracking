@@ -12,7 +12,7 @@ public class HandUpdater : MonoBehaviour {
     private GenericDictionary<SteamVR_Input_Sources, Color> sourceColorMap =
         new GenericDictionary<SteamVR_Input_Sources, Color>();
     
-    [SerializeField] private GenericDictionary<SteamVR_Input_Sources, Hand> sources =
+    public GenericDictionary<SteamVR_Input_Sources, Hand> sources =
         new GenericDictionary<SteamVR_Input_Sources, Hand>();
 
 #if UNITY_EDITOR
@@ -33,11 +33,13 @@ public class HandUpdater : MonoBehaviour {
     
     private void Update() {
         // update HandTracking about each hand
-        foreach ((SteamVR_Input_Sources source, Hand hand) in sources) {
-            HandPoseData handPoseData = new HandPoseData();
-            handPoseData = PopulateHandPoseData(source, handPoseData, hand);
-            HandTracking.UpdateHand(source, handPoseData);
-        }
+        try {
+            foreach ((SteamVR_Input_Sources source, Hand hand) in sources) {
+                HandPoseData handPoseData = new HandPoseData();
+                handPoseData = PopulateHandPoseData(source, handPoseData, hand);
+                HandTracking.UpdateHand(source, handPoseData);
+            }
+        } catch {}
         
         HandTracking.Update();
     }
@@ -50,10 +52,7 @@ public class HandUpdater : MonoBehaviour {
             handPoseData.middleCurl = hand.skeleton.middleCurl;
             handPoseData.ringCurl = hand.skeleton.ringCurl;
             handPoseData.pinkyCurl = hand.skeleton.pinkyCurl;
-        } catch {
-            Debug.LogWarning("Failed to set curl");
-        }
-
+        } catch {}
         
         handPoseData.head = head.position;
         

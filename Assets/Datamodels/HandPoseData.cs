@@ -29,9 +29,6 @@ public struct HandPoseData {
     }
 
     public static float PositionalDistance(HandPoseData current, HandPoseData recording) {
-        Debug.Log("current " + current.offset);
-        Debug.Log("recording " + recording.offset);
-        Debug.Log(Vector3.Distance(current.offset, recording.offset));
         return Vector3.Distance(current.offset, recording.offset);
     }
 }

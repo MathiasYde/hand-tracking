@@ -12,36 +12,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e9d0a5a7d42025469fa9efc97acf756, type: 3}
   m_Name: TakeShieldRecording
   m_EditorClassIdentifier: 
+  source: 1
   name: TakeShield
   handData:
     list:
     - Key: 1
       Value:
       - source: 1
-        thumbCurl: 0.9627033
+        thumbCurl: 0.9039956
         indexCurl: 1
-        middleCurl: 0.9698036
-        ringCurl: 1
-        pinkyCurl: 0.949267
-        offset: {x: -0.013555527, y: 0.17402852, z: -0.057998}
-        head: {x: 0.76946545, y: 1.6846148, z: 0.7309036}
+        middleCurl: 0.6842915
+        ringCurl: 0.94007826
+        pinkyCurl: 0.5724794
+        offset: {x: 0.24388713, y: -0.0023311377, z: -0.18446872}
+        head: {x: 0.0899601, y: 1.5039859, z: -0.009196069}
       - source: 1
-        thumbCurl: 0.9808248
+        thumbCurl: 0.9039956
         indexCurl: 1
-        middleCurl: 1
-        ringCurl: 1
-        pinkyCurl: 0.9153344
-        offset: {x: -0.14653593, y: -0.58184505, z: 0.008707762}
-        head: {x: 0.7486268, y: 1.6753597, z: 0.75693107}
+        middleCurl: 0.7076965
+        ringCurl: 0.948987
+        pinkyCurl: 0.6589072
+        offset: {x: 0.17886722, y: 0.024661899, z: 0.1007006}
+        head: {x: 0.0984509, y: 1.5013679, z: -0.001188267}
     keyCollision: 0
   positionalMaxDistance:
     enabled: 1
-    value: 0.35
+    value: 0.15
   curlMaxDistance:
     enabled: 0
     value: 4
   count: 2
   recognitionProgress: 0
-  onRecognize:
-    m_PersistentCalls:
-      m_Calls: []

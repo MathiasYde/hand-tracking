@@ -7,7 +7,7 @@ public static class VRDebugConsole {
     private static uint maxLines = 8;
     public static void Log(string text) {
         Debug.Log(text);
-        lines.Add(text);
+        lines.Add($"{Time.realtimeSinceStartup}:{text}");
         if (lines.Count > maxLines) {
             lines.RemoveAt(0);
         }

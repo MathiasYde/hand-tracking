@@ -28,5 +28,9 @@ public class HandTrackRecordingEditor : Editor {
             HandTracking.CaptureHandData(script);
         }
 
+        if (GUILayout.Button("Execute recognition events", GUILayout.Height(40))) {
+            script.onRecognize?.Invoke(script);
+        }
+
     }
 }

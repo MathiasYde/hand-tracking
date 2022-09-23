@@ -12,46 +12,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e9d0a5a7d42025469fa9efc97acf756, type: 3}
   m_Name: TestRecording
   m_EditorClassIdentifier: 
+  source: 0
   name: TestRecording
   handData:
     list:
     - Key: 2
       Value:
-      - thumbCurl: 0.7900982
-        indexCurl: 0.55402976
-        middleCurl: 0.092931904
-        ringCurl: 0.34778953
-        pinkyCurl: 1
-        offset: {x: -0.00097233057, y: 0.122538686, z: -0.11430815}
-        head: {x: 0.28327703, y: 1.1233919, z: -0.23646143}
-      - thumbCurl: 0.24761438
-        indexCurl: 0.12645772
-        middleCurl: 0.18429765
-        ringCurl: 0.1900698
-        pinkyCurl: 0.18926093
-        offset: {x: 0.051535845, y: -0.51648605, z: -0.44716564}
-        head: {x: 0.33154917, y: 1.1151879, z: -0.22679159}
+      - source: 2
+        thumbCurl: 0.21175802
+        indexCurl: 0.75742584
+        middleCurl: 0.16072948
+        ringCurl: 0.1633982
+        pinkyCurl: 0.16435339
+        offset: {x: -0.08940947, y: 0.18475413, z: 0.009313308}
+        head: {x: 0.009482384, y: 1.5121816, z: -0.08254166}
+      - source: 2
+        thumbCurl: 0.29653633
+        indexCurl: 0.45287713
+        middleCurl: 0.2153297
+        ringCurl: 0.20643476
+        pinkyCurl: 0.21971144
+        offset: {x: -0.26046976, y: -0.60273546, z: 0.15308252}
+        head: {x: 0.044876814, y: 1.4990677, z: -0.115647934}
     keyCollision: 0
   positionalMaxDistance:
     enabled: 1
-    value: 0.4
+    value: 0.15
   curlMaxDistance:
     enabled: 0
     value: 0.4
   count: 2
-  recognitionProgress: 0
-  onRecognize:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3904192094525490513, guid: af3e7e988be8702419299612ba33a803, type: 3}
-        m_TargetAssemblyTypeName: RequestRecording, Assembly-CSharp
-        m_MethodName: LogOnRecognized
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  recognitionProgress: 1
