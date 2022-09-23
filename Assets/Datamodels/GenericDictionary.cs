@@ -116,6 +116,16 @@ public class GenericDictionary<TKey, TValue> : IDictionary<TKey, TValue>, ISeria
 
     public bool TryGetValue(TKey key, out TValue value) => dict.TryGetValue(key, out value);
 
+    // Custom method written by Mathias Yde
+    public TValue Get(TKey key, TValue _default) {
+        if (TryGetValue(key, out TValue value)) {
+            return value;
+        }
+
+        return _default;
+    }
+
+
     // ICollection
     public int Count => dict.Count;
     public bool IsReadOnly { get; set; }
@@ -131,7 +141,7 @@ public class GenericDictionary<TKey, TValue> : IDictionary<TKey, TValue>, ISeria
         list.Clear();
         indexByKey.Clear();
     }
-
+    
     public bool Contains(KeyValuePair<TKey, TValue> pair)
     {
         TValue value;

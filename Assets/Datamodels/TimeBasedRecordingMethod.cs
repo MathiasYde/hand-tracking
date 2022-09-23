@@ -17,7 +17,6 @@ public class TimeBasedRecordingMethod : RecordingMethod {
     public override void StopRecording() {}
 
     public override void UpdateRecording() {
-        Debug.Log($"Updating time based recording method");
         timer.Update(Time.deltaTime);
     }
 }

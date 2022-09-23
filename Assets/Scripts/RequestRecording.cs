@@ -7,13 +7,18 @@ public class RequestRecording : MonoBehaviour {
     [SerializeField] private RecordingMethod recordingMethod;
     [SerializeField] private HandTrackRecording recording;
 
+    public void LogOnRecognized()
+    {
+        VRDebugConsole.Log("Recognized recording");
+    }
+
     public void LogFinishRecording() {
         VRDebugConsole.Log("Finished recording");
     }
 
     private IEnumerator RequestRecord() {
         VRDebugConsole.Log("Starting recording");
-        yield return HandTracking.Record(recording); // maybe this needs to be wrapped in StartCoroutine
+        yield return HandTracking.Record(recording);
         VRDebugConsole.Log("Stopped recording");
     }
     private void Update() {

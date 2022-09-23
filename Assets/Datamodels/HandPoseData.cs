@@ -1,15 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Valve.VR;
 
 [System.Serializable]
 public struct HandPoseData {
+    public SteamVR_Input_Sources source;
+    
     public float thumbCurl;
     public float indexCurl;
     public float middleCurl;
     public float ringCurl;
     public float pinkyCurl;
+
     public Vector3 offset; // relative to head
+    public Vector3 head; // position in global space
 
     public static float CurlDistance(HandPoseData handData1, HandPoseData handData2) {
         float distance = 0.0f;
@@ -23,13 +28,10 @@ public struct HandPoseData {
         return distance;
     }
 
-    public static float PositionalDistance(HandPoseData handData1, HandPoseData handData2) {
-        float distance = 0.0f;
-
-        distance += handData2.offset.x - handData1.offset.x;
-        distance += handData2.offset.y - handData1.offset.y;
-        distance += handData2.offset.z - handData1.offset.z;
-
-        return distance;
+    public static float PositionalDistance(HandPoseData current, HandPoseData recording) {
+        Debug.Log("current " + current.offset);
+        Debug.Log("recording " + recording.offset);
+        Debug.Log(Vector3.Distance(current.offset, recording.offset));
+        return Vector3.Distance(current.offset, recording.offset);
     }
 }

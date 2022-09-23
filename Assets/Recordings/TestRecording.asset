@@ -12,130 +12,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e9d0a5a7d42025469fa9efc97acf756, type: 3}
   m_Name: TestRecording
   m_EditorClassIdentifier: 
+  name: TestRecording
   handData:
     list:
     - Key: 2
       Value:
-      - thumbCurl: 0.82163405
-        indexCurl: 0.9549503
-        middleCurl: 0.7933024
-        ringCurl: 0.8874977
-        pinkyCurl: 0.98854965
-        offset: {x: 0.15240717, y: 0.108457685, z: 0.2226778}
-      - thumbCurl: 0.8069378
-        indexCurl: 0.9606952
-        middleCurl: 0.79377574
-        ringCurl: 0.8882155
-        pinkyCurl: 0.9903995
-        offset: {x: 0.15220213, y: 0.10723722, z: 0.22616476}
-      - thumbCurl: 0.80911785
-        indexCurl: 0.9623435
-        middleCurl: 0.7946793
-        ringCurl: 0.889867
-        pinkyCurl: 0.99557376
-        offset: {x: 0.1498456, y: 0.10768151, z: 0.23196281}
-      - thumbCurl: 0.8447854
-        indexCurl: 0.9618083
-        middleCurl: 0.79483
-        ringCurl: 0.88961846
-        pinkyCurl: 0.99397403
-        offset: {x: 0.17026973, y: 0.10138607, z: 0.23361018}
-      - thumbCurl: 0.8416333
-        indexCurl: 0.9607059
-        middleCurl: 0.72550875
-        ringCurl: 0.8887893
-        pinkyCurl: 0.99058294
-        offset: {x: 0.20886636, y: 0.09994495, z: 0.2314674}
-      - thumbCurl: 0.8404354
-        indexCurl: 0.9607091
-        middleCurl: 0.71552706
-        ringCurl: 0.88902277
-        pinkyCurl: 0.9906547
-        offset: {x: 0.21959329, y: 0.09912777, z: 0.2328102}
-      - thumbCurl: 0.837719
-        indexCurl: 0.9601374
-        middleCurl: 0.6909531
-        ringCurl: 0.88839567
-        pinkyCurl: 0.98883885
-        offset: {x: 0.23055053, y: 0.095864534, z: 0.22580707}
-      - thumbCurl: 0.83778465
-        indexCurl: 0.9636518
-        middleCurl: 0.6906547
-        ringCurl: 0.88782245
-        pinkyCurl: 0.987001
-        offset: {x: 0.23310804, y: 0.094903946, z: 0.2286113}
-      - thumbCurl: 0.83710885
-        indexCurl: 0.97128
-        middleCurl: 0.6911781
-        ringCurl: 0.88846475
-        pinkyCurl: 0.9888427
-        offset: {x: 0.22724533, y: 0.09463906, z: 0.23124625}
-    - Key: 1
-      Value:
-      - thumbCurl: 0.049701393
-        indexCurl: 0.1254411
-        middleCurl: 0.99305505
-        ringCurl: 1
+      - thumbCurl: 0.7900982
+        indexCurl: 0.55402976
+        middleCurl: 0.092931904
+        ringCurl: 0.34778953
         pinkyCurl: 1
-        offset: {x: -0.108026266, y: 0.13667607, z: 0.22005466}
-      - thumbCurl: 0.048584342
-        indexCurl: 0.12544078
-        middleCurl: 0.9930509
-        ringCurl: 1
-        pinkyCurl: 1
-        offset: {x: -0.109432936, y: 0.13586843, z: 0.22047445}
-      - thumbCurl: 0.048101425
-        indexCurl: 0.16853282
-        middleCurl: 0.993049
-        ringCurl: 1
-        pinkyCurl: 1
-        offset: {x: -0.10704541, y: 0.13716578, z: 0.22193967}
-      - thumbCurl: 0.050856113
-        indexCurl: 0.57773614
-        middleCurl: 0.99305934
-        ringCurl: 1
-        pinkyCurl: 1
-        offset: {x: -0.08994436, y: 0.13421488, z: 0.23022294}
-      - thumbCurl: 0.051882863
-        indexCurl: 0.13946822
-        middleCurl: 0.8768126
-        ringCurl: 0.9908019
-        pinkyCurl: 1
-        offset: {x: -0.058163166, y: 0.1279087, z: 0.21442968}
-      - thumbCurl: 0.049851894
-        indexCurl: 0.20182997
-        middleCurl: 0.44404054
-        ringCurl: 0.97884077
-        pinkyCurl: 1
-        offset: {x: -0.069708824, y: 0.12808156, z: 0.23288551}
-      - thumbCurl: 0.091522396
-        indexCurl: 0.56998307
-        middleCurl: 0.8768146
-        ringCurl: 0.9915843
-        pinkyCurl: 1
-        offset: {x: -0.07725859, y: 0.1382873, z: 0.25154164}
-      - thumbCurl: 0.8418607
-        indexCurl: 0.5778354
-        middleCurl: 0.92171997
-        ringCurl: 0.99209094
-        pinkyCurl: 1
-        offset: {x: -0.07346296, y: 0.13355374, z: 0.24760051}
-      - thumbCurl: 0.86274564
-        indexCurl: 0.5985196
-        middleCurl: 0.9574824
-        ringCurl: 0.9941422
-        pinkyCurl: 1
-        offset: {x: -0.07129121, y: 0.13319826, z: 0.24639584}
+        offset: {x: -0.00097233057, y: 0.122538686, z: -0.11430815}
+        head: {x: 0.28327703, y: 1.1233919, z: -0.23646143}
+      - thumbCurl: 0.24761438
+        indexCurl: 0.12645772
+        middleCurl: 0.18429765
+        ringCurl: 0.1900698
+        pinkyCurl: 0.18926093
+        offset: {x: 0.051535845, y: -0.51648605, z: -0.44716564}
+        head: {x: 0.33154917, y: 1.1151879, z: -0.22679159}
     keyCollision: 0
-  positionalMaxDistance: 0.2
-  curlMaxDistance: 0.4
-  count: 18
+  positionalMaxDistance:
+    enabled: 1
+    value: 0.4
+  curlMaxDistance:
+    enabled: 0
+    value: 0.4
+  count: 2
+  recognitionProgress: 0
   onRecognize:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 3904192094525490513, guid: af3e7e988be8702419299612ba33a803, type: 3}
         m_TargetAssemblyTypeName: RequestRecording, Assembly-CSharp
-        m_MethodName: LogFinishRecording
+        m_MethodName: LogOnRecognized
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
