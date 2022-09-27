@@ -13,8 +13,15 @@ public class HandTrackingDebugInfo : MonoBehaviour {
     }
 
     void OnDrawGizmos() {
-        List<HandTrackRecording> recordings = HandTracking.GetRecordings();
         GenericDictionary<SteamVR_Input_Sources, HandPoseData> currentHandPoses = HandTracking.GetCurrentHandPoses();
+
+        foreach ((SteamVR_Input_Sources source, HandPoseData handPoseData) in currentHandPoses)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawRay(head.position, handPoseData.offset);
+        }
+
+        List<HandTrackRecording> recordings = HandTracking.GetRecordings();
 
         foreach (HandTrackRecording recording in recordings) {
             if (recording == null) { continue; }
@@ -29,8 +36,8 @@ public class HandTrackingDebugInfo : MonoBehaviour {
 
                     Gizmos.color = Color.cyan;
                     Gizmos.DrawLine(
-                        current.offset + head.position,
-                        next.offset + head.position
+                        head.TransformDirection(current.offset) + head.position,
+                        head.TransformDirection(next.offset) + head.position
                     );
                 }
                 
@@ -39,8 +46,8 @@ public class HandTrackingDebugInfo : MonoBehaviour {
                     HandPoseData currentSource = currentHandPoses[source];
 
                     Gizmos.color = Color.magenta;
-                    Vector3 position1 = currentRecognizedHandData.offset + currentSource.head;
-                    Vector3 position2 = currentSource.offset + currentSource.head;
+                    Vector3 position1 = head.TransformDirection(currentRecognizedHandData.offset) + currentSource.head;
+                    Vector3 position2 = head.TransformDirection(currentSource.offset) + currentSource.head;
                     Gizmos.DrawLine(position1, position2);
                 } catch { }
 
@@ -52,7 +59,8 @@ public class HandTrackingDebugInfo : MonoBehaviour {
                     if (i == recording.recognitionProgress) Gizmos.color = Color.yellow;
                     if (i < recording.recognitionProgress)  Gizmos.color = Color.green;
 
-                    Vector3 position = handPoseData.offset + head.position;
+                    //Vector3 position = handPoseData.offset + head.position;
+                    Vector3 position = head.TransformDirection(handPoseData.offset) + head.position;
                     Gizmos.DrawWireSphere(position, recording.positionalMaxDistance);
                 }
             }

@@ -60,9 +60,8 @@ public class HandUpdater : MonoBehaviour {
         Transform wrist = hand.skeleton.GetBone(1);
         
         handPoseData.offset = (head.position - wrist.position) * -1;
-        // handPoseData.offset.x = (head.position.x - wrist.position.x) * -1;
-        // handPoseData.offset.y = (head.position.y - wrist.position.y) * -1;
-        // handPoseData.offset.z = (head.position.z - wrist.position.z) * -1;
+        handPoseData.offset = head.InverseTransformDirection(handPoseData.offset);
+
         return handPoseData;
     }
     
