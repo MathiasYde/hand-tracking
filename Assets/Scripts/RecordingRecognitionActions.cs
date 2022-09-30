@@ -10,6 +10,8 @@ public class RecordingRecognitionActions : MonoBehaviour {
     private GenericDictionary<SteamVR_Input_Sources, Hand> sources =
         new GenericDictionary<SteamVR_Input_Sources, Hand>();
 
+    [SerializeField] private Transform head;
+
     public GameObject shield;
 
     private void Awake() {
