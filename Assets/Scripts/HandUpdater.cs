@@ -12,7 +12,7 @@ public class HandUpdater : MonoBehaviour {
     private GenericDictionary<SteamVR_Input_Sources, Color> sourceColorMap =
         new GenericDictionary<SteamVR_Input_Sources, Color>();
     
-    [SerializeField] private GenericDictionary<SteamVR_Input_Sources, Hand> sources =
+    public GenericDictionary<SteamVR_Input_Sources, Hand> sources =
         new GenericDictionary<SteamVR_Input_Sources, Hand>();
 
 #if UNITY_EDITOR
@@ -33,11 +33,13 @@ public class HandUpdater : MonoBehaviour {
     
     private void Update() {
         // update HandTracking about each hand
-        foreach ((SteamVR_Input_Sources source, Hand hand) in sources) {
-            HandPoseData handPoseData = new HandPoseData();
-            handPoseData = PopulateHandPoseData(source, handPoseData, hand);
-            HandTracking.UpdateHand(source, handPoseData);
-        }
+        try {
+            foreach ((SteamVR_Input_Sources source, Hand hand) in sources) {
+                HandPoseData handPoseData = new HandPoseData();
+                handPoseData = PopulateHandPoseData(source, handPoseData, hand);
+                HandTracking.UpdateHand(source, handPoseData);
+            }
+        } catch {}
         
         HandTracking.Update();
     }
@@ -50,10 +52,7 @@ public class HandUpdater : MonoBehaviour {
             handPoseData.middleCurl = hand.skeleton.middleCurl;
             handPoseData.ringCurl = hand.skeleton.ringCurl;
             handPoseData.pinkyCurl = hand.skeleton.pinkyCurl;
-        } catch {
-            Debug.LogWarning("Failed to set curl");
-        }
-
+        } catch {}
         
         handPoseData.head = head.position;
         
@@ -61,9 +60,8 @@ public class HandUpdater : MonoBehaviour {
         Transform wrist = hand.skeleton.GetBone(1);
         
         handPoseData.offset = (head.position - wrist.position) * -1;
-        // handPoseData.offset.x = (head.position.x - wrist.position.x) * -1;
-        // handPoseData.offset.y = (head.position.y - wrist.position.y) * -1;
-        // handPoseData.offset.z = (head.position.z - wrist.position.z) * -1;
+        handPoseData.offset = head.InverseTransformDirection(handPoseData.offset);
+
         return handPoseData;
     }
     

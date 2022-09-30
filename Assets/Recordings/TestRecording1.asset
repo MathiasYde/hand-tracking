@@ -10,36 +10,36 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9e9d0a5a7d42025469fa9efc97acf756, type: 3}
-  m_Name: TakeShieldRecording
+  m_Name: TestRecording1
   m_EditorClassIdentifier: 
   source: 1
-  name: TakeShield
+  name: Test Recording 1
   handData:
     list:
     - Key: 1
       Value:
       - source: 1
-        thumbCurl: 0.9039956
+        thumbCurl: 0.95343906
         indexCurl: 1
-        middleCurl: 0.6842915
-        ringCurl: 0.94007826
-        pinkyCurl: 0.5724794
-        offset: {x: 0.24388713, y: -0.0023311377, z: -0.18446872}
-        head: {x: 0.0899601, y: 1.5039859, z: -0.009196069}
+        middleCurl: 0.9783927
+        ringCurl: 1
+        pinkyCurl: 1
+        offset: {x: -0.12808333, y: -0.25507417, z: 0.5014958}
+        head: {x: 0.00090432167, y: 1.0417813, z: -0.23286048}
       - source: 1
-        thumbCurl: 0.9039956
-        indexCurl: 1
-        middleCurl: 0.7076965
-        ringCurl: 0.948987
-        pinkyCurl: 0.6589072
-        offset: {x: 0.17886722, y: 0.024661899, z: 0.1007006}
-        head: {x: 0.0984509, y: 1.5013679, z: -0.001188267}
+        thumbCurl: 0.9120405
+        indexCurl: 0.012056439
+        middleCurl: 0.7303106
+        ringCurl: 0.9858082
+        pinkyCurl: 0.21515687
+        offset: {x: -0.7072024, y: -0.22708867, z: -0.08540657}
+        head: {x: 0.018758297, y: 1.0502063, z: -0.28095844}
     keyCollision: 0
   positionalMaxDistance:
     enabled: 1
-    value: 0.15
+    value: 0.2
   curlMaxDistance:
     enabled: 0
     value: 4
   count: 2
-  recognitionProgress: 0
+  recognitionProgress: 1
