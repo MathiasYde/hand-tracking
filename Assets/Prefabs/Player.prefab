@@ -2522,10 +2522,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sources:
-    list: []
+    list:
+    - Key: 1
+      Value: {fileID: 1307114434056979801}
+    - Key: 2
+      Value: {fileID: 1307114434057192903}
     keyCollision: 0
-  head: {fileID: 0}
-  shield: {fileID: 0}
+  head: {fileID: 1307114434051227475}
+  shield: {fileID: 1902379205001854464, guid: f6c42120cfacfe14f8ea0014112ee8ad, type: 3}
 --- !u!114 &6179320703636476551
 MonoBehaviour:
   m_ObjectHideFlags: 0

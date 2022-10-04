@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TakeShieldRecording
   m_EditorClassIdentifier: 
   source: 0
-  name: TakeShield
+  name: Take Shield
   handData:
     list:
     - Key: 1

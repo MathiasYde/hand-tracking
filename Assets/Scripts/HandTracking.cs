@@ -64,6 +64,9 @@ public static class HandTracking {
             
             // test if disqualified
             foreach ((SteamVR_Input_Sources source, List<HandPoseData> recordingHandPoses) in recording.handData) {
+                // prevent index error
+                if (recording.recognitionProgress < recordingHandPoses.Count) { continue; }
+                
                 HandPoseData currentHandPose = currentHandPoses[source];
                 HandPoseData recordingHandPose = recordingHandPoses[recording.recognitionProgress];
                 

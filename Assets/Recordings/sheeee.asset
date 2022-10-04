@@ -17,31 +17,7 @@ MonoBehaviour:
   handData:
     list:
     - Key: 1
-      Value:
-      - source: 1
-        thumbCurl: 0.7961127
-        indexCurl: 0.3171568
-        middleCurl: 0.22104551
-        ringCurl: 0.23059295
-        pinkyCurl: 0.21737248
-        offset: {x: -0.26485595, y: -0.809509, z: -0.12764686}
-        head: {x: 2.0393286, y: 1.5444087, z: 0.32662427}
-      - source: 1
-        thumbCurl: 0.7961127
-        indexCurl: 0.043944497
-        middleCurl: 0.06935404
-        ringCurl: 0.07357871
-        pinkyCurl: 0.07229497
-        offset: {x: -0.24823728, y: -0.32884815, z: 0.39701006}
-        head: {x: 2.0243454, y: 1.539066, z: 0.32518327}
-      - source: 1
-        thumbCurl: 0.9881101
-        indexCurl: 0.98061603
-        middleCurl: 1
-        ringCurl: 1
-        pinkyCurl: 1
-        offset: {x: -0.16472085, y: 0.37375697, z: -0.1289254}
-        head: {x: 1.9745326, y: 1.5486604, z: 0.3800261}
+      Value: []
     keyCollision: 0
   positionalMaxDistance:
     enabled: 1
@@ -49,15 +25,15 @@ MonoBehaviour:
   curlMaxDistance:
     enabled: 0
     value: 0
-  count: 3
-  recognitionProgress: 2
+  count: 0
+  recognitionProgress: 0
   onRecognize:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 11500000, guid: a24e0d82f4530ee4cb289f90f102e01e, type: 3}
         m_TargetAssemblyTypeName: UnityEngine.Object, UnityEngine
-        m_MethodName: set_name
-        m_Mode: 5
+        m_MethodName: 
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
