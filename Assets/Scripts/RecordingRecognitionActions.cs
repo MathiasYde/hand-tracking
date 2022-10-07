@@ -28,8 +28,10 @@ public class RecordingRecognitionActions : MonoBehaviour {
         hand.DetachObject(hand.currentAttachedObject);
     }
 
-    public void AttachGameobject(SteamVR_Input_Sources source, GameObject gameObject) {
+    public void AttachGameobject(SteamVR_Input_Sources source, GameObject prefab) {
         Hand hand = sources[source];
-        hand.AttachObject(gameObject, GrabTypes.Trigger);
+        GameObject instance = GameObject.Instantiate(prefab, hand.transform.position, hand.transform.rotation) as GameObject;
+        
+        hand.AttachObject(instance, GrabTypes.Grip);
     }
 }
