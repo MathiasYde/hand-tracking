@@ -60,31 +60,34 @@ public static class HandTracking {
 
     public static void RecognizeHandGestures() {
         foreach (HandTrackRecording recording in recordings) {
+            if (recording.count == 0) { continue; }
+
             bool disqualified = false;
             
             // test if disqualified
             foreach ((SteamVR_Input_Sources source, List<HandPoseData> recordingHandPoses) in recording.handData) {
-                // prevent index error
-                if (recording.recognitionProgress < recordingHandPoses.Count) { continue; }
+
+                try {
+                    HandPoseData currentHandPose = currentHandPoses[source];
+                    HandPoseData recordingHandPose = recordingHandPoses[recording.recognitionProgress];
+
+                    // disqualify by positional distance
+                    float positionalDistance = HandPoseData.PositionalDistance(currentHandPose, recordingHandPose);
+                    if (recording.positionalMaxDistance.Enabled &&
+                        (positionalDistance > recording.positionalMaxDistance)) {
+                        disqualified = true;
+                        goto break_loop;
+                    }
                 
-                HandPoseData currentHandPose = currentHandPoses[source];
-                HandPoseData recordingHandPose = recordingHandPoses[recording.recognitionProgress];
+                    // disqualify by curl distance
+                    float curlDistance = HandPoseData.CurlDistance(currentHandPose, recordingHandPose);
+                    if (recording.curlMaxDistance.Enabled &&
+                        (curlDistance > recording.curlMaxDistance)) {
+                        disqualified = true;
+                        goto break_loop;
+                    }
+                } catch {}
                 
-                // disqualify by positional distance
-                float positionalDistance = HandPoseData.PositionalDistance(currentHandPose, recordingHandPose);
-                if (recording.positionalMaxDistance.Enabled &&
-                    (positionalDistance > recording.positionalMaxDistance)) {
-                    disqualified = true;
-                    goto break_loop;
-                }
-                
-                // disqualify by curl distance
-                float curlDistance = HandPoseData.CurlDistance(currentHandPose, recordingHandPose);
-                if (recording.curlMaxDistance.Enabled &&
-                    (curlDistance > recording.curlMaxDistance)) {
-                    disqualified = true;
-                    goto break_loop;
-                }
             }
 
             break_loop:

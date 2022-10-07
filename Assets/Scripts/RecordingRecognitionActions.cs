@@ -12,6 +12,8 @@ public class RecordingRecognitionActions : MonoBehaviour {
 
     [SerializeField] private Transform head;
 
+    [SerializeField] private PlayerRuntimeSet playerRuntimeSet;
+
     public GameObject shield;
 
     private void Awake() {
@@ -30,8 +32,9 @@ public class RecordingRecognitionActions : MonoBehaviour {
 
     public void AttachGameobject(SteamVR_Input_Sources source, GameObject prefab) {
         Hand hand = sources[source];
-        GameObject instance = GameObject.Instantiate(prefab, hand.transform.position, hand.transform.rotation) as GameObject;
-        
-        hand.AttachObject(instance, GrabTypes.Grip);
+        Debug.Log(this.transform.name);
+        GameObject _inst = Instantiate(prefab, hand.transform.position, hand.transform.rotation) as GameObject;
+     
+        hand.AttachObject(_inst, GrabTypes.Grip);
     }
 }
