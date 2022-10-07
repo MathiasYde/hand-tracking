@@ -7,6 +7,8 @@ using Valve.VR;
 public class TimeBasedRecordingStoppingCriteria : RecordingStoppingCriteria {
     [SerializeField] private float timeout;
     private Timer timer;
+
+    public void SetTimeout(float timeout) => this.timeout = timeout;
     public override bool ShouldStop() => timer.isFinished;
 
     public override void StartRecording() {
