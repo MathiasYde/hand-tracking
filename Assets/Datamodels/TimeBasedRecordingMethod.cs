@@ -4,6 +4,8 @@ using UnityEngine;
 public class TimeBasedRecordingMethod : RecordingMethod {
     [SerializeField] private float timeout;
     private Timer timer;
+
+    public void SetTimeout(float timeout) => this.timeout = timeout;
     public override void StartRecording() {
         timer = new Timer(timeout);
         timer.onTimerEnd += onTimerEnd;
