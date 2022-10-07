@@ -212,3 +212,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1307114434051675963, guid: 6b070de766e60334892969871660de86, type: 3}
   offset: {x: 0, y: 1.8, z: 0}
+--- !u!65 &5662064016365467641
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1835496574756337581}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.4229784, y: 0.4245659, z: 0.3086512}
+  m_Center: {x: 0.023562789, y: 0.06830686, z: 0.039328218}
