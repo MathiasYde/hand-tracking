@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e9d0a5a7d42025469fa9efc97acf756, type: 3}
+  m_Name: TakeGun
+  m_EditorClassIdentifier: 
+  source: 2
+  name: Take Gun
+  handData:
+    list:
+    - Key: 2
+      Value:
+      - source: 2
+        thumbCurl: 0.28970325
+        indexCurl: 0.18401162
+        middleCurl: 0.20975691
+        ringCurl: 0.217146
+        pinkyCurl: 0.39198533
+        offset: {x: 0.25428823, y: -0.82688165, z: -0.21614447}
+        head: {x: 1.6238658, y: 1.6559368, z: 0.91661215}
+      - source: 2
+        thumbCurl: 0.28599072
+        indexCurl: 0.8241333
+        middleCurl: 0.19253169
+        ringCurl: 0.19121017
+        pinkyCurl: 0.6031944
+        offset: {x: 0.24730639, y: -0.58637667, z: -0.22374222}
+        head: {x: 1.6408577, y: 1.6550357, z: 0.9096706}
+      - source: 2
+        thumbCurl: 0.13697076
+        indexCurl: 0.12922555
+        middleCurl: 0.1094031
+        ringCurl: 0.11348289
+        pinkyCurl: 0.10957118
+        offset: {x: 0.23912933, y: -0.5719057, z: 0.2140247}
+        head: {x: 1.6365879, y: 1.6566764, z: 0.9184874}
+    keyCollision: 0
+  positionalMaxDistance:
+    enabled: 1
+    value: 0.14
+  curlMaxDistance:
+    enabled: 1
+    value: 4
+  count: 3
+  recognitionProgress: 0
+  onRecognize:
+    m_PersistentCalls:
+      m_Calls: []

@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e9d0a5a7d42025469fa9efc97acf756, type: 3}
+  m_Name: TakeAxe
+  m_EditorClassIdentifier: 
+  source: 0
+  name: Take axe
+  handData:
+    list:
+    - Key: 2
+      Value:
+      - source: 2
+        thumbCurl: 0.0028933287
+        indexCurl: 0.0018746293
+        middleCurl: 0.0026695316
+        ringCurl: 0.0030210614
+        pinkyCurl: 0.0027253884
+        offset: {x: 0.2623791, y: -0.20201008, z: 0.2673094}
+        head: {x: 1.7079908, y: 1.5943459, z: 0.87189883}
+      - source: 2
+        thumbCurl: 0.27488852
+        indexCurl: 0.13927704
+        middleCurl: 0.20241086
+        ringCurl: 0.20291418
+        pinkyCurl: 0.20737348
+        offset: {x: 0.14159401, y: -0.043615185, z: -0.15528208}
+        head: {x: 1.7144482, y: 1.5964414, z: 0.85252494}
+      - source: 2
+        thumbCurl: 0.12327695
+        indexCurl: 0.06431268
+        middleCurl: 0.09999432
+        ringCurl: 0.10048716
+        pinkyCurl: 0.11137289
+        offset: {x: 0.21925502, y: 0.25496972, z: -0.05422595}
+        head: {x: 1.7086749, y: 1.5994332, z: 0.8742934}
+    keyCollision: 0
+  positionalMaxDistance:
+    enabled: 1
+    value: 0.15
+  curlMaxDistance:
+    enabled: 1
+    value: 4
+  count: 3
+  recognitionProgress: 2
+  onRecognize:
+    m_PersistentCalls:
+      m_Calls: []

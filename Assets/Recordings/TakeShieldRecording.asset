@@ -45,24 +45,24 @@ MonoBehaviour:
     keyCollision: 0
   positionalMaxDistance:
     enabled: 1
-    value: 0.15
+    value: 0.17
   curlMaxDistance:
     enabled: 0
     value: 4
   count: 3
-  recognitionProgress: 1
+  recognitionProgress: 0
   onRecognize:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 395481025966636341, guid: cdfd66d9828149143922ce54921c8280, type: 3}
-        m_TargetAssemblyTypeName: RecordingActionsManager, Assembly-CSharp
-        m_MethodName: AttachShield
-        m_Mode: 2
+      - m_Target: {fileID: 4321399034245768661, guid: 6b070de766e60334892969871660de86, type: 3}
+        m_TargetAssemblyTypeName: WeaponManager, Assembly-CSharp
+        m_MethodName: EquipWeapon
+        m_Mode: 5
         m_Arguments:
-          m_ObjectArgument: {fileID: 11400000}
-          m_ObjectArgumentAssemblyTypeName: HandTrackRecording, Assembly-CSharp
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: shield
           m_BoolArgument: 0
         m_CallState: 1

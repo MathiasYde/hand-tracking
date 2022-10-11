@@ -56,7 +56,6 @@ public class HandUpdater : MonoBehaviour {
         
         handPoseData.head = head.position;
         
-        // TODO(mathias) make relative to camera forward direction
         Transform wrist = hand.skeleton.GetBone(1);
         
         handPoseData.offset = (head.position - wrist.position) * -1;

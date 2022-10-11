@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e9d0a5a7d42025469fa9efc97acf756, type: 3}
+  m_Name: MakeWall
+  m_EditorClassIdentifier: 
+  source: 0
+  name: make wall
+  handData:
+    list:
+    - Key: 1
+      Value:
+      - source: 1
+        thumbCurl: 0.7961127
+        indexCurl: 0.11015889
+        middleCurl: 0.15668124
+        ringCurl: 0.16118205
+        pinkyCurl: 0.16030866
+        offset: {x: -0.3060269, y: -0.68677235, z: 0.29513276}
+        head: {x: 1.7801361, y: 1.6339625, z: 0.7977598}
+      - source: 1
+        thumbCurl: 0.7961127
+        indexCurl: 0.05040159
+        middleCurl: 0.07157715
+        ringCurl: 0.07399168
+        pinkyCurl: 0.0715436
+        offset: {x: -0.3421825, y: -0.022816785, z: 0.35220128}
+        head: {x: 1.770886, y: 1.6504408, z: 0.82970387}
+    - Key: 2
+      Value:
+      - source: 2
+        thumbCurl: 0.79611284
+        indexCurl: 0.06858634
+        middleCurl: 0.13435255
+        ringCurl: 0.14750972
+        pinkyCurl: 0.18706389
+        offset: {x: 0.35091504, y: -0.66220546, z: 0.27281314}
+        head: {x: 1.7801361, y: 1.6339625, z: 0.7977598}
+      - source: 2
+        thumbCurl: 0.79611284
+        indexCurl: 0.063150994
+        middleCurl: 0.12721209
+        ringCurl: 0.14065486
+        pinkyCurl: 0.18090375
+        offset: {x: 0.3143676, y: -0.017448459, z: 0.344105}
+        head: {x: 1.770886, y: 1.6504408, z: 0.82970387}
+    keyCollision: 0
+  positionalMaxDistance:
+    enabled: 1
+    value: 0.2
+  curlMaxDistance:
+    enabled: 1
+    value: 4
+  count: 4
+  recognitionProgress: 1
+  onRecognize:
+    m_PersistentCalls:
+      m_Calls: []
