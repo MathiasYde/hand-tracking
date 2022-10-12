@@ -528,6 +528,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef140beec582a5a46a6362fcfc31784d, type: 3}
+--- !u!1 &1258667692 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1307114434051675963, guid: 6b070de766e60334892969871660de86, type: 3}
+  m_PrefabInstance: {fileID: 1290523873}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1258667701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1258667692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27991c206a5e66147bb8ee3ef31c8bac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionSet:
+    actionSetPath: /actions/default
+  forSources: 0
+  disableAllOtherActionSets: 0
+  activateOnStart: 1
+  deactivateOnDestroy: 1
+  initialPriority: 0
 --- !u!1001 &1290523873
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -581,8 +605,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1307114434051675963, guid: 6b070de766e60334892969871660de86, type: 3}
       propertyPath: m_Name
-      value: Player
+      value: PlayerInScene
       objectReference: {fileID: 0}
+    - target: {fileID: 4321399034245768661, guid: 6b070de766e60334892969871660de86, type: 3}
+      propertyPath: weaponRuntimeSet
+      value: 
+      objectReference: {fileID: 11400000, guid: 49d14f0db7ecaa5489cf952508f79b07, type: 2}
     - target: {fileID: 4321399034245768661, guid: 6b070de766e60334892969871660de86, type: 3}
       propertyPath: sources.keyCollision
       value: 0
@@ -611,6 +639,14 @@ PrefabInstance:
       propertyPath: sources.list.Array.data[1].Value
       value: 
       objectReference: {fileID: 1432148257}
+    - target: {fileID: 4321399034245768661, guid: 6b070de766e60334892969871660de86, type: 3}
+      propertyPath: equippedWeapons.list.Array.data[0].Value
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8169797655879935418, guid: 6b070de766e60334892969871660de86, type: 3}
+      propertyPath: playerRuntimeSet
+      value: 
+      objectReference: {fileID: 11400000, guid: 74407cc051eb561439d3e0f812f64ef2, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6b070de766e60334892969871660de86, type: 3}
 --- !u!114 &1432148257 stripped

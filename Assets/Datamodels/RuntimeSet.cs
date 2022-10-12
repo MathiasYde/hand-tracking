@@ -8,6 +8,8 @@ public abstract class RuntimeSet<T> : ScriptableObject {
 
     public T Get(string key) => entries.Get(key, default);
 
+    public bool TryGet(string key, out T value) => entries.TryGetValue(key, out value);
+
     public void Register(string key, T value) {
         Debug.Log($"{key}:{value}<{value.GetType()}>");
         // prevent overriding

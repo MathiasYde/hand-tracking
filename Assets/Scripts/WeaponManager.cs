@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,19 +6,41 @@ using Valve.VR;
 using Valve.VR.InteractionSystem;
 
 public class WeaponManager : MonoBehaviour {
-    [SerializeField] private GenericDictionary<string, Weapon> weapons = new GenericDictionary<string, Weapon>();
+    [SerializeField] private SteamVR_Action_Boolean gripAction;
+    
+    [SerializeField] private PlayerRuntimeSet playerRuntimeSet;
+    
+    [SerializeField] private WeaponRuntimeSet weaponRuntimeSet;
     [SerializeField] private GenericDictionary<SteamVR_Input_Sources, Weapon> equippedWeapons;
-    [SerializeField] private GenericDictionary<SteamVR_Input_Sources, Hand> sources;
 
     private void Start() {
-        sources = GetComponent<HandUpdater>().sources;
+        gripAction.AddOnChangeListener(OnGripAction, SteamVR_Input_Sources.LeftHand);
+        gripAction.AddOnChangeListener(OnGripAction, SteamVR_Input_Sources.RightHand);
+    }D
+
+    private void OnGripAction(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource, bool newState) {
+        if (!newState) { return; }
+
+        GameObject player = playerRuntimeSet.Get("player");
+        GenericDictionary<SteamVR_Input_Sources, Hand> sources = player.GetComponent<HandUpdater>().sources;
+
+        if (equippedWeapons.TryGetValue(fromSource, out Weapon weapon)) {
+            Hand hand = sources[fromSource];
+            Debug.Log($"is hand null? {hand == null}");
+            Debug.Log($"is weapon null? {weapon == null}");
+            Debug.Log($"is weapon gameobject null? {weapon.gameObject == null}");
+            hand.DetachObject(weapon.gameObject);
+            equippedWeapons[fromSource] = null;
+        }
     }
-
+    
     public void EquipWeapon(string weaponName) {
-        GenericDictionary<SteamVR_Input_Sources, Hand> sources = GetComponent<HandUpdater>().sources;
+        GameObject player = playerRuntimeSet.Get("player");
 
-        Debug.Log($"WeaponManager[{this.gameObject.name}].EquipWeapon({weaponName})");
-        if (weapons.TryGetValue(weaponName, out Weapon weapon)) {
+        GenericDictionary<SteamVR_Input_Sources, Hand> sources = player.GetComponent<HandUpdater>().sources;
+        WeaponManager manager = player.GetComponent<WeaponManager>();
+        
+        if (manager.weaponRuntimeSet.TryGet(weaponName, out Weapon weapon)) {
             SteamVR_Input_Sources handSource = weapon.GetPreferedHand();
             Debug.Log(sources[SteamVR_Input_Sources.LeftHand] == null);
             Hand hand = sources.Get(handSource, null);
@@ -27,12 +50,15 @@ public class WeaponManager : MonoBehaviour {
             }
 
             if (equippedWeapons.TryGetValue(handSource, out Weapon oldWeapon)) {
+                
                 if (oldWeapon != null) {
                     hand.DetachObject(oldWeapon.gameObject);
                     oldWeapon.OnUnequip(this);
+                    equippedWeapons[handSource] = null;
                     Transform unequippedTransform = oldWeapon.GetDefaultUnequipedTransform();
-                    oldWeapon.transform.position = unequippedTransform.position;
-                    oldWeapon.transform.rotation = unequippedTransform.rotation;
+                    oldWeapon.transform.SetPositionAndRotation(
+                        unequippedTransform.position,
+                        unequippedTransform.rotation);
                 }
             }
 
