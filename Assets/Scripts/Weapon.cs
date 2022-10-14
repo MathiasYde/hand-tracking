@@ -5,6 +5,8 @@ using UnityEngine;
 using Valve.VR;
 
 public class Weapon : MonoBehaviour {
+    [SerializeField] private int damage;
+    
     [SerializeField] private WeaponRuntimeSet weaponRuntimeSet;
     [SerializeField] private Optional<string> runtimeSetRegisteringName;
     [SerializeField] private Transform defaultUnequipedTransform;
@@ -20,6 +22,12 @@ public class Weapon : MonoBehaviour {
     private void OnDisable() {
         if (runtimeSetRegisteringName.Enabled) {
             weaponRuntimeSet.Unregister(runtimeSetRegisteringName.Value);
+        }
+    }
+
+    public void OnTriggerEnter(Collider other) {
+        if (other.TryGetComponent<Targetable>(out Targetable targetable)) {
+            targetable.TakeDamage(damage);
         }
     }
 

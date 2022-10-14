@@ -45,12 +45,12 @@ MonoBehaviour:
     keyCollision: 0
   positionalMaxDistance:
     enabled: 1
-    value: 0.11
+    value: 0.2
   curlMaxDistance:
     enabled: 1
     value: 4
   count: 3
-  recognitionProgress: 1
+  recognitionProgress: 0
   onRecognize:
     m_PersistentCalls:
       m_Calls:

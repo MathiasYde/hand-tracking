@@ -16,20 +16,27 @@ public class WeaponManager : MonoBehaviour {
     private void Start() {
         gripAction.AddOnChangeListener(OnGripAction, SteamVR_Input_Sources.LeftHand);
         gripAction.AddOnChangeListener(OnGripAction, SteamVR_Input_Sources.RightHand);
-    }D
+    }
 
     private void OnGripAction(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource, bool newState) {
         if (!newState) { return; }
+        
+        Debug.Log("Grip action");
 
         GameObject player = playerRuntimeSet.Get("player");
         GenericDictionary<SteamVR_Input_Sources, Hand> sources = player.GetComponent<HandUpdater>().sources;
+        GenericDictionary<SteamVR_Input_Sources, Weapon> equippedWeapons = player.GetComponent<WeaponManager>().equippedWeapons;
 
         if (equippedWeapons.TryGetValue(fromSource, out Weapon weapon)) {
+            Debug.Log(weapon == null);
+            if (weapon == null) {
+                return;}
+            
+            Debug.Log("Detaching weapon from gripAction");
             Hand hand = sources[fromSource];
-            Debug.Log($"is hand null? {hand == null}");
-            Debug.Log($"is weapon null? {weapon == null}");
-            Debug.Log($"is weapon gameobject null? {weapon.gameObject == null}");
             hand.DetachObject(weapon.gameObject);
+            Transform unequippedPosition = weapon.GetDefaultUnequipedTransform();
+            weapon.transform.SetPositionAndRotation(unequippedPosition.position, unequippedPosition.rotation);
             equippedWeapons[fromSource] = null;
         }
     }
@@ -37,6 +44,7 @@ public class WeaponManager : MonoBehaviour {
     public void EquipWeapon(string weaponName) {
         GameObject player = playerRuntimeSet.Get("player");
 
+        GenericDictionary<SteamVR_Input_Sources, Weapon> equippedWeapons = player.GetComponent<WeaponManager>().equippedWeapons;
         GenericDictionary<SteamVR_Input_Sources, Hand> sources = player.GetComponent<HandUpdater>().sources;
         WeaponManager manager = player.GetComponent<WeaponManager>();
         
