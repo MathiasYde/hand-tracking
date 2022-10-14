@@ -6,12 +6,24 @@ using Valve.VR;
 using Valve.VR.InteractionSystem;
 
 public class WeaponManager : MonoBehaviour {
+    [SerializeField] private Transform head;
+
     [SerializeField] private SteamVR_Action_Boolean gripAction;
     
     [SerializeField] private PlayerRuntimeSet playerRuntimeSet;
     
     [SerializeField] private WeaponRuntimeSet weaponRuntimeSet;
     [SerializeField] private GenericDictionary<SteamVR_Input_Sources, Weapon> equippedWeapons;
+
+    [SerializeField] private GameObject fireballPrefab;
+    [SerializeField] private Vector3 fireballSpawnOffset;
+
+    [SerializeField] private int fireBallDamage = 40;
+
+    [SerializeField] private GameObject wallPrefab;
+    [SerializeField] private float wallDistance = 2;
+
+    [SerializeField] private LayerMask groundLayerMask;
 
     private void Start() {
         gripAction.AddOnChangeListener(OnGripAction, SteamVR_Input_Sources.LeftHand);
@@ -28,7 +40,7 @@ public class WeaponManager : MonoBehaviour {
         GenericDictionary<SteamVR_Input_Sources, Weapon> equippedWeapons = player.GetComponent<WeaponManager>().equippedWeapons;
 
         if (equippedWeapons.TryGetValue(fromSource, out Weapon weapon)) {
-            Debug.Log(weapon == null);
+            Debug.Log(weapon == null);  
             if (weapon == null) {
                 return;}
             
@@ -38,6 +50,46 @@ public class WeaponManager : MonoBehaviour {
             Transform unequippedPosition = weapon.GetDefaultUnequipedTransform();
             weapon.transform.SetPositionAndRotation(unequippedPosition.position, unequippedPosition.rotation);
             equippedWeapons[fromSource] = null;
+        }
+    }
+
+    public void CastWall()
+    {
+        GameObject head = playerRuntimeSet.Get("head");
+
+        GameObject wall = Instantiate(wallPrefab, head.transform.position, Quaternion.identity);
+        wall.transform.position = head.transform.forward * wallDistance;
+
+        RaycastHit hit;
+        if (Physics.Raycast(wall.transform.position, Vector3.up, out hit, Mathf.Infinity, groundLayerMask))
+        {
+            wall.transform.position = hit.transform.position;
+        }
+
+        if (Physics.Raycast(wall.transform.position, Vector3.down, out hit, Mathf.Infinity, groundLayerMask))
+        {
+            wall.transform.position = hit.transform.position;
+        }
+
+        wall.transform.LookAt(head.transform);
+
+    }
+
+    public void CastFireball() {
+        GameObject player = playerRuntimeSet.Get("player");
+        GameObject head = playerRuntimeSet.Get("head");
+        
+
+        GameObject fireball = Instantiate(fireballPrefab, head.transform.position + fireballSpawnOffset, Quaternion.identity);
+        fireball.transform.forward = head.transform.forward;
+
+        if (player.TryGetComponent<TargetSelector>(out TargetSelector targetSelector)) {
+            Targetable target = targetSelector.GetClosestTarget;
+            if (target == null) { return; }
+
+            if (fireball.TryGetComponent<MoveForward>(out MoveForward moveForward)) {
+                moveForward.SetTarget(target.transform);
+            }
         }
     }
     

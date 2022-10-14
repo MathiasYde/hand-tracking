@@ -16,10 +16,6 @@ public class EnemySpawner : MonoBehaviour {
         spawnTimer = new Timer(spawnTimeInterval);
     }
 
-    private void OnDrawGizmos() {
-        Gizmos.Draw
-    }
-
     private void Start() {
         spawnTimer.onTimerEnd += () => {
             SpawnEnemy();

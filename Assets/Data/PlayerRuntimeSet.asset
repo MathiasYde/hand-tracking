@@ -16,4 +16,6 @@ MonoBehaviour:
     list:
     - Key: player
       Value: {fileID: 0}
+    - Key: head
+      Value: {fileID: 0}
     keyCollision: 0

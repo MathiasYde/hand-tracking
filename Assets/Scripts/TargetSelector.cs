@@ -12,6 +12,11 @@ public class TargetSelector : MonoBehaviour {
     [SerializeField] private float coneDistance;
     [SerializeField] private float coneAngle;
 
+    private Targetable closetTarget;
+
+    public Targetable GetClosestTarget => closetTarget;
+    public Transform GetClosestTargetTransform => closetTarget.transform;
+
     private void Awake() {
         physics = new Physics();
     }
@@ -28,9 +33,9 @@ public class TargetSelector : MonoBehaviour {
         }
         
         if (targets.Count == 0) { return; }
-        
+
         // sort by distance and get the closest
-        Targetable closestTarget = targets.OrderBy(target => Vector3.Distance(head.position, target.transform.position)).First();
-        closestTarget.Highlight();
+        closetTarget = targets.OrderBy(target => Vector3.Distance(head.position, target.transform.position)).First();
+        closetTarget.Highlight();
     }
 }

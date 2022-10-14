@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class RegisterToRuntimeSet : MonoBehaviour {
     public PlayerRuntimeSet set;
-    public string key;
+
+    [SerializeField] private GenericDictionary<string, GameObject> entries;
 
     private void OnEnable() {
-        set.Register(key, this.gameObject);
+        foreach ((string key, GameObject value) in entries) {
+            set.Register(key, value);
+        }
     }
 
     private void OnDisable() {
-        set.Unregister(key);
+        foreach (string key in entries.Keys) {
+            set.Unregister(key);
+        }
     }
 }

@@ -25,8 +25,17 @@ public class Weapon : MonoBehaviour {
         }
     }
 
+    public void OnCollisionEnter(Collision other) {
+        if (other.transform.TryGetComponent<Targetable>(out Targetable targetable))
+        {
+            Debug.Log($"Applying {damage} to Targetable with name {targetable.name}");
+            targetable.TakeDamage(damage);
+        }
+    }
+
     public void OnTriggerEnter(Collider other) {
         if (other.TryGetComponent<Targetable>(out Targetable targetable)) {
+            Debug.Log($"Applying {damage} to Targetable with name {targetable.name}");
             targetable.TakeDamage(damage);
         }
     }

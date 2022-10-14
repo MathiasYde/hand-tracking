@@ -9,6 +9,8 @@ public class Timer {
 
     public bool isFinished { get { return timer >= timeout; } }
     public float remainingTime { get { return timeout - timer; } }
+
+    public Timer() { }
     public Timer(float time) {
         this.timeout = time;
     }

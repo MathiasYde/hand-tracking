@@ -23,7 +23,7 @@ public class RecordingActionsManager : MonoBehaviour {
     public void AttachGameObject(SteamVR_Input_Sources source, GameObject prefab) {
         Hand hand = playerRuntimeSet.Get("player").GetComponent<HandUpdater>().sources[source];
         
-        if (hand.currentAttachedObject != null) {
+        if (hand.currentAttachedObject != null) {   
             hand.DetachObject(hand.currentAttachedObject);
         }
 

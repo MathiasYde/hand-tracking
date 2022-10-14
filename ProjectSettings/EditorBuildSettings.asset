@@ -4,7 +4,13 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/map.unity
+    guid: 399b0df5806172f46aa12b4f15c0390e
+  - enabled: 1
+    path: Assets/Scenes/GameOverScene.unity
+    guid: 947af32bd0773d648ac9092c1ce2a662
   m_configObjects:
     Unity.XR.OpenVR.Settings: {fileID: 11400000, guid: e62ed05a2a2a02949b8e3e991bd47f22, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: aa7ba15e892e8f74aa6d748364aeb3dd, type: 2}

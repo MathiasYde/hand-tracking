@@ -17,18 +17,62 @@ MonoBehaviour:
   handData:
     list:
     - Key: 2
-      Value: []
+      Value:
+      - source: 2
+        thumbCurl: 0.7675454
+        indexCurl: 0.07518281
+        middleCurl: 0.12431821
+        ringCurl: 0.13117485
+        pinkyCurl: 0.15040842
+        offset: {x: 0.115480624, y: -0.5577925, z: 0.08880453}
+        head: {x: 1.6032554, y: 1.5941954, z: 0.8183291}
+      - source: 2
+        thumbCurl: 0.13360357
+        indexCurl: 0.07290562
+        middleCurl: 0.107409
+        ringCurl: 0.10971983
+        pinkyCurl: 0.11452637
+        offset: {x: 0.08701523, y: -0.3861557, z: 0.45481688}
+        head: {x: 1.6083431, y: 1.5836759, z: 0.8403292}
     - Key: 1
-      Value: []
+      Value:
+      - source: 1
+        thumbCurl: 0.7659488
+        indexCurl: 0.07103774
+        middleCurl: 0.10049234
+        ringCurl: 0.10375783
+        pinkyCurl: 0.10232316
+        offset: {x: -0.12042979, y: -0.567963, z: 0.087439}
+        head: {x: 1.6032554, y: 1.5941954, z: 0.8183291}
+      - source: 1
+        thumbCurl: 0.094970345
+        indexCurl: 0.05530441
+        middleCurl: 0.078832105
+        ringCurl: 0.08171469
+        pinkyCurl: 0.08147399
+        offset: {x: -0.102744855, y: -0.40167966, z: 0.4670132}
+        head: {x: 1.6083431, y: 1.5836759, z: 0.8403292}
     keyCollision: 0
   positionalMaxDistance:
     enabled: 1
-    value: 0.4
+    value: 0.2
   curlMaxDistance:
-    enabled: 1
+    enabled: 0
     value: 4
-  count: 0
+  count: 4
   recognitionProgress: 0
   onRecognize:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4321399034245768661, guid: 6b070de766e60334892969871660de86, type: 3}
+        m_TargetAssemblyTypeName: WeaponManager, Assembly-CSharp
+        m_MethodName: CastFireball
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

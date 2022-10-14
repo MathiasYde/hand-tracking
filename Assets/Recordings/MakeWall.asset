@@ -55,12 +55,24 @@ MonoBehaviour:
     keyCollision: 0
   positionalMaxDistance:
     enabled: 1
-    value: 0.2
+    value: 0.25
   curlMaxDistance:
     enabled: 1
     value: 4
   count: 4
-  recognitionProgress: 1
+  recognitionProgress: 0
   onRecognize:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4321399034245768661, guid: 6b070de766e60334892969871660de86, type: 3}
+        m_TargetAssemblyTypeName: WeaponManager, Assembly-CSharp
+        m_MethodName: CastWall
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
